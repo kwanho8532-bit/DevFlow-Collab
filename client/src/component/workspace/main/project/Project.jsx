@@ -1,0 +1,81 @@
+import {
+    Box, Typography, Chip,
+    Avatar, Stack, Divider,
+    Paper, Button, IconButton,
+    Tooltip, LinearProgress
+} from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import { useProjectStore } from '../../../../store/useProjectStore';
+import { useAuthStore } from '../../../../store/useAuthStore';
+import { useEffect, useState } from 'react';
+import { useTaskStore } from '../../../../store/useTaskStore';
+import { useWorkspaceStore } from '../../../../store/useWorkspaceStore';
+import AddTaskDialog from '../../dialogs/AddTaskDialog';
+import TaskItem from '../task/TaskItem';
+import EditProjectDialog from '../../dialogs/EditProjectDialog';
+import DeleteProjectDialog from '../../dialogs/DeleteProjectDialog';
+import ProjectTasks from './ProjectTasks';
+import ProjectHeader from './ProjectHeader';
+import ProjectBody from './ProjectBody';
+import ArchivedOverlay from '../../../dashboard/ProjectDetail/overlay/ArchivedOverlay';
+import ArchiveOverlay from '../ArchiveOverlay';
+
+
+
+export default function Project() {
+    const selectedWorkspace = useWorkspaceStore(state => state.selectedWorkspace)
+    const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)
+    const getTasksInWorkspaceProject = useTaskStore(state => state.getTasksInWorkspaceProject)
+    const tasksInWorkspaceProject = useTaskStore(state => state.tasksInWorkspaceProject)
+
+    const isArchivedProject = !!selectedProject?.archivedAt
+
+    useEffect(() => {
+        if (!selectedProject) return
+        getTasksInWorkspaceProject(selectedProject._id)
+    }, [selectedProject, getTasksInWorkspaceProject])
+
+
+    if (!selectedProject) return <Typography variant='h5' textAlign='center'>프로젝트를 선택해주세요.</Typography>;
+
+    const isDoneOrArchive = ['DONE', 'ARCHIVE'].includes(selectedProject.status)
+
+    console.log(selectedWorkspace)
+
+    return (
+        <Box sx={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            p: 4,
+            bgcolor: '#F9F8F6',
+            overflow: 'hidden',
+            position: 'relative'
+        }}>
+            {/* 1. 헤더 영역: 제목 및 상태 */}
+            <ProjectHeader />
+
+            <Divider sx={{ mb: 3 }} />
+
+            {/* 2. 바디 영역: tasks 및 description */}
+            <Stack
+                direction='row'
+                spacing={3}
+                sx={{
+                    flex: 1,
+                    minHeight: 0,
+                }}>
+                {/* tasks 영역 */}
+                <ProjectTasks isDoneOrArchive={isDoneOrArchive} />
+
+                {/* description 영역 */}
+                <Stack direction='column' spacing={2} sx={{ flex: 1, }}>
+                    <ProjectBody isDoneOrArchive={isDoneOrArchive} />
+                </Stack>
+                {isArchivedProject && <ArchiveOverlay />}
+
+            </Stack>
+
+        </Box >
+    );
+};

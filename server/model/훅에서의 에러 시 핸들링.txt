@@ -1,0 +1,16 @@
+예를 들어 훅에서 Promise.all([])에 넣은 작업 중 하나가 
+실패하게 되면 reject되고 요즘 Promise는 reject 시 자동으로 
+에러를 던지게 되는데 그렇다면 이 에러는 어디로 가서 catch 되는가?
+
+1. 에러 전파의 경로 (Flow)
+에러는 거꾸로 거슬러 올라갑니다.
+
+1. Promise.all() 중 하나가 실패하면 Reject됩니다.
+
+2. 이 Reject된 에러는 미들웨어를 실행시킨 Project.findOneAndDelete() 지점으로 던져집니다.
+
+3. 이 함수를 호출한 곳은 보통 **컨트롤러(Controller)**입니다.
+
+4. 컨트롤러에서 try-catch로 이 함수를 감싸고 있다면 에러를 잡을 수 있고,
+여기서 next(err)를 호출해야 비로소 app.js의 에러 미들웨어로 도달합니다.
+

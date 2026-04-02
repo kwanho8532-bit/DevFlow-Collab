@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"invitee":{"$numberInt":"1"},"workspace":{"$numberInt":"1"}},"name":"invitee_1_workspace_1","unique":true}],"uuid":"254c4d7985e94d299511d6e806e91950","collectionName":"invites","type":"collection"}
