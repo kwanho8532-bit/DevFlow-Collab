@@ -6,14 +6,12 @@ import {
 import { useProjectStore } from '../../../../store/useProjectStore.js';
 import { useEffect } from 'react';
 import { useTaskStore } from '../../../../store/useTaskStore.js';
-import { useWorkspaceStore } from '../../../../store/useWorkspaceStore.js';
 import ProjectTasks from './ProjectTasks.jsx';
 import ProjectHeader from './ProjectHeader.jsx';
 import ProjectBody from './ProjectBody.jsx';
 import ArchiveOverlay from '../ArchiveOverlay.jsx';
 
 export default function Project() {
-    const selectedWorkspace = useWorkspaceStore(state => state.selectedWorkspace)
     const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)
     const getTasksInWorkspaceProject = useTaskStore(state => state.getTasksInWorkspaceProject)
 
