@@ -36,6 +36,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.set('trust proxy', 1)
+
 const sessionConfig = {
     name: 'DevFlow.sid',
     secret: process.env.SESSION_SECRET,
@@ -66,10 +68,16 @@ const sessionConfig = {
 
         // 프로덕트 환경
         httpOnly: true,
+        sameSite: 'none', // 서로 다른 도메인(Vercel <-> Render) 간 쿠키 전송 허용
         secure: true,
         maxAge: 1000 * 60 * 60 * 3
     }
 }
+
+const allowedOrigins = [
+    'https://dev-flow-collab.vercel.app', // 배포 시 vercel 주소
+    'http://localhost:5173' // 로컬 테스트용
+]
 
 app.use(cors({
     // origin: ,
