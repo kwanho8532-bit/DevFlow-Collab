@@ -1,7 +1,6 @@
-import {
-    Box, Hero,
-} from '@mui/material';
+import { Box } from '@mui/material';
 
+import Hero from './hero/Hero.jsx';
 import Description from './description/Description.jsx';
 import Footer from './footer/Footer.jsx';
 
