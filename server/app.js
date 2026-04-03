@@ -80,7 +80,7 @@ const allowedOrigins = [
 ]
 
 app.use(cors({
-    // origin: ,
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
     credentials: true
 }))
