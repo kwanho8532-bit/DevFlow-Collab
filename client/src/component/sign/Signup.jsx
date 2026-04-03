@@ -2,7 +2,7 @@ import {
     Box, Typography, Tooltip,
     IconButton, TextField, Stack,
     Paper, Button, Alert
-} from "@mui/material/Box";
+} from "@mui/material";
 import MuiLink from '@mui/material/Link';
 
 import Diversity2Icon from '@mui/icons-material/Diversity2';
