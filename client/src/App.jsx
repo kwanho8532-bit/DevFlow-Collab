@@ -3,7 +3,7 @@ import LandingPage from './component/landing/LandingPage.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router';
 import Signup from './component/sign/Signup.jsx';
 import Signin from './component/sign/Signin.jsx';
-import ContextLayout from './component/wrap/.jsx'
+import ContextLayout from './component/wrap/ContextLayout.jsx'
 import Hub from './component/hub/Hub.jsx';
 import DashBoardPage from './component/dashboard/DashBoardPage.jsx'
 import ProjectDetail from './component/dashboard/ProjectDetail/ProjectDetail.jsx';
