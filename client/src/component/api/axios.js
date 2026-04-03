@@ -3,7 +3,7 @@ import { useLoadingStore } from '../../store/useLoadingStore.js'
 import { useAuthStore } from '../../store/useAuthStore.js'
 
 const api = axios.create({
-    baseURL: '/api',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
 })
 
