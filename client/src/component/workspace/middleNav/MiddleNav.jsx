@@ -6,7 +6,7 @@ import {
 import { useProjectStore } from "../../../store/useProjectStore.js";
 import Element from "./Element.jsx";
 import AddIcon from '@mui/icons-material/Add';
-import AddProjectDialog from "../dialogs/AddProjectDialog.jsx";
+import AddProjectDialog from "../dialogs/AddProjectDialog.jsx"
 import { useState } from "react";
 import { useWorkspaceStore } from "../../../store/useWorkspaceStore.js";
 
