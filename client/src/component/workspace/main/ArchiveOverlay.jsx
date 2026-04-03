@@ -1,10 +1,14 @@
-import { Box, Button, Chip } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+    Box, Button, Chip
+} from "@mui/material";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import { useNavigate, useParams } from "react-router-dom";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from "react";
-import DeleteProjectDialog from "../dialogs/DeleteProjectDialog";
+import DeleteProjectDialog from "../dialogs/DeleteProjectDialog.jsx";
 
 export default function ArchiveOverlay() {
     const navigate = useNavigate()

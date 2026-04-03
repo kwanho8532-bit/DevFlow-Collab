@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 
-import Header from "./Header";
-import Kanban from "./Kanban";
+import Header from "./Header.jsx";
+import Kanban from "./Kanban.jsx";
 
 export default function KanbanPage() {
     return (

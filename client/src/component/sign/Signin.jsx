@@ -1,20 +1,19 @@
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
+import {
+    Box, IconButton, Tooltip,
+    Typography, TextField, Stack,
+    Button
+} from "@mui/material";
+
 import Diversity2Icon from '@mui/icons-material/Diversity2';
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+
 import { useForm } from "react-hook-form";
-import { signinSchema } from "../../schema/zod";
+import { signinSchema } from "../../schema/zod.js";
 import { zodResolver } from "@hookform/resolvers/zod";
-import api from "../api/axios";
+import api from "../api/axios.js";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
-import Alert from '@mui/material/Alert';
 import { useAuthStore } from "../../store/useAuthStore.js";
 import { useEffect } from "react";
-import SigninAlert from "./SigninAlert";
+import SigninAlert from "./SigninAlert.jsx";
 
 
 export default function Signin() {

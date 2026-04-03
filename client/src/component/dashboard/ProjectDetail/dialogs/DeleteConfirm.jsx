@@ -1,5 +1,10 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from "@mui/material";
-import { useTaskStore } from "../../../../store/useTaskStore";
+import {
+    Box, Button, Dialog,
+    DialogActions, DialogContent, DialogContentText,
+    DialogTitle, Typography
+} from "@mui/material";
+
+import { useTaskStore } from "../../../../store/useTaskStore.js";
 
 
 export default function DeleteConfirm({ task, deleteConfirmOpen, handleDeleteConfirmClose }) {

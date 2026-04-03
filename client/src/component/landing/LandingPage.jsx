@@ -1,7 +1,9 @@
-import Box from '@mui/material/Box';
-import Hero from './hero/Hero';
-import Description from './description/Description';
-import Footer from './footer/footer';
+import {
+    Box, Hero,
+} from '@mui/material';
+
+import Description from './description/Description.jsx';
+import Footer from './footer/Footer.jsx';
 
 export default function LandingPage() {
     return (

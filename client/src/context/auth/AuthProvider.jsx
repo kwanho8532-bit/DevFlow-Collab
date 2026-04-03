@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import api from '../../component/api/axios'
-import { AuthStateContext } from './AuthStateContext'
-import { AuthActionContext } from './AuthActionContext'
+import api from '../../component/api/axios.js'
+import { AuthStateContext } from './AuthStateContext.jsx'
+import { AuthActionContext } from './AuthActionContext.jsx'
 
 export default function AuthProvider({ children }) {
     const [auth, setAuth] = useState(null)

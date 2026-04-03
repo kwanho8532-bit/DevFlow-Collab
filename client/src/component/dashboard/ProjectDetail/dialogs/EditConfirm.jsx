@@ -1,13 +1,12 @@
 import {
-    Box,
-    Button, Dialog, DialogActions,
-    DialogContent, DialogContentText, DialogTitle,
-    Stack,
-    Typography
+    Box, Button, Dialog,
+    DialogActions, DialogContent, DialogContentText,
+    DialogTitle, Stack, Typography
 } from "@mui/material";
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { getImportanceOptions } from "../../../etc/importanceOptions";
+
+import { getImportanceOptions } from "../../../etc/importanceOptions.jsx";
 
 export default function EditConfirm({ editConfirmOpen, handleEditConfirmClose, prevObj, changeObj, formId }) {
     const { changeTaskName, changeUserImportance } = changeObj

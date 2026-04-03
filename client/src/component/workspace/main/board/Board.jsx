@@ -1,7 +1,6 @@
-import { Box, Typography } from "@mui/material";
-import { useProjectStore } from "../../../../store/useProjectStore";
-import Loader from "../../../etc/Loader";
-import Project from "../project/Project";
+import { Box } from "@mui/material";
+
+import Project from "../project/Project.jsx";
 
 
 export default function Board() {

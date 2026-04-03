@@ -1,8 +1,7 @@
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
+import {
+    Box, Container, Grid,
+    Typography, Paper
+} from "@mui/material";
 
 import SpeedIcon from '@mui/icons-material/Speed';
 import CodeIcon from '@mui/icons-material/Code';

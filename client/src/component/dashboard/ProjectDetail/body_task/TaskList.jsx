@@ -1,12 +1,6 @@
-import {
-    Box, Checkbox, IconButton, ListItem,
-    ListItemButton, ListItemIcon, ListItemText,
-    Paper,
-    Stack,
-    Tooltip,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
-import TaskItem from "./TaskItem";
+import TaskItem from "./TaskItem.jsx";
 
 export default function TaskList({ tasks, setPendingTaskId, setIsConfirmOpen }) {
     return (

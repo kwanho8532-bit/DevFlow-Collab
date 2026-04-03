@@ -1,4 +1,8 @@
-import { Box, Container, Grid, Typography, Button } from '@mui/material';
+import {
+    Box, Container, Grid,
+    Typography
+} from '@mui/material';
+
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function FeatureDetail() {

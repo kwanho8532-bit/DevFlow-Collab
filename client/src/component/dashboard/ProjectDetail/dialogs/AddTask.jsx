@@ -1,24 +1,14 @@
 import {
-    Button,
-    TextField,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Typography,
-    Box,
-    FormControl,
-    Select,
-    InputLabel,
-    MenuItem,
+    Button, TextField, Dialog,
+    DialogActions, DialogContent, DialogTitle,
+    Typography, Box, FormControl,
+    Select, InputLabel, MenuItem,
     FormHelperText
 } from '@mui/material';
 
 import CircleIcon from '@mui/icons-material/Circle';
 
 import { Controller, useForm } from 'react-hook-form';
-import api from '../../../api/axios.js';
 import { useProjectStore } from '../../../../store/useProjectStore.js';
 import { useTaskStore } from '../../../../store/useTaskStore.js';
 
@@ -35,7 +25,7 @@ export default function AddTask({ open, handleClose }) {
         register,
         control,
         handleSubmit,
-        formState: { isValid, errors },
+        formState: { isValid },
         reset,
 
     } = useForm({

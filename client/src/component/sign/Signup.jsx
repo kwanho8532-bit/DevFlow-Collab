@@ -1,16 +1,13 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Diversity2Icon from '@mui/icons-material/Diversity2';
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import Paper from "@mui/material/Paper";
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from "@mui/material/Button";
-import Alert from '@mui/material/Alert';
+import {
+    Box, Typography, Tooltip,
+    IconButton, TextField, Stack,
+    Paper, Button, Alert
+} from "@mui/material/Box";
 import MuiLink from '@mui/material/Link';
+
+import Diversity2Icon from '@mui/icons-material/Diversity2';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useForm, Controller } from 'react-hook-form'
 import { useDropzone } from 'react-dropzone'
@@ -19,7 +16,7 @@ import { Link, useNavigate } from "react-router";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signupSchema } from "../../schema/zod.js";
 
-import api from "../api/axios";
+import api from "../api/axios.js";
 import Spinner from "../etc/Spinner.jsx";
 import { useAuthStore } from "../../store/useAuthStore.js";
 import { useLoadingStore } from "../../store/useLoadingStore.js";

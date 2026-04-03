@@ -1,10 +1,12 @@
-import { Box, Button, Chip } from "@mui/material";
+import {
+    Box, Button, Chip
+} from "@mui/material";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 import { useNavigate } from "react-router-dom";
-import ArchivedDelete from "../dialogs/ArchivedDelete";
+import ArchivedDelete from "../dialogs/ArchivedDelete.jsx";
 import { useState } from "react";
 
 export default function ArchivedOverlay() {

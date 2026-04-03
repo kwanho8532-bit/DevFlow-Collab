@@ -1,10 +1,9 @@
 import {
     Box, Button, Dialog,
     DialogActions, DialogContent, DialogTitle,
-    FormControl, FormHelperText, InputLabel,
-    MenuItem, Select, TextField,
-    Typography,
+    TextField, Typography,
 } from "@mui/material";
+
 import { createWorkspace as createWorkspaceSchema } from "../../../../schema/zod.js";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

@@ -1,19 +1,13 @@
 import {
-    Grid,
-    Typography,
-    Paper,
-    Button,
-    Stack,
-    Box,
-    Chip,
-
+    Grid, Typography, Paper,
+    Stack, Box, Chip,
 } from '@mui/material'
+
 import dayjs from 'dayjs'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import { getPriority } from '../../../utils/dateHelper.js'
 import { useProjectStore } from '../../../store/useProjectStore.js'
 import { useEffect } from 'react'
-import { useSearchStore } from '../../../store/useSearchStore.js'
 
 // status prop을 kanban에서 넘어온 projects로 바꾸고 status값을 참조하는 것도 projects로 바꾸기
 export default function KanbanCoulmn({ title, projects }) {

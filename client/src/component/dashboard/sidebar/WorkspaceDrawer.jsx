@@ -4,10 +4,10 @@ import {
     ListItemButton, ListItemText, TextField,
     Typography
 } from "@mui/material";
+
 import SearchIcon from '@mui/icons-material/Search';
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useWorkspaceStore } from "../../../store/useWorkspaceStore.js";
 import { Link } from "react-router-dom";
 import { useProjectStore } from "../../../store/useProjectStore.js";

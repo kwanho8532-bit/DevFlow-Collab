@@ -8,7 +8,6 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 import { useInviteStore } from "../../../../store/useInviteStore.js"
 import dayjs from 'dayjs';
-import { useState } from 'react';
 import { useWorkspaceStore } from '../../../../store/useWorkspaceStore.js';
 import { useSnackbarStore } from '../../../../store/useSnackbarStore.js';
 
@@ -17,16 +16,6 @@ export default function Invite() {
     const invites = useInviteStore(state => state.invites)
     const acceptAndJoin = useWorkspaceStore(state => state.acceptAndJoin)
     const snackbarOpen = useSnackbarStore(state => state.snackbarOpen)
-
-    const [acceptDialogOpen, setAcceptDialogOpen] = useState(false)
-
-    const handleAcceptDialogOpen = () => {
-        setAcceptDialogOpen(true)
-    }
-
-    const handleAcceptDialogClose = () => {
-        setAcceptDialogOpen(false)
-    }
 
     // 요청 수락 & 거절 로직 만들기 (수락 시 해당 workspace로 이동하기 & workspaceMember 생성)
     const handleAccept = async (inviteId) => {

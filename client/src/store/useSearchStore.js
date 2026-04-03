@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import hangul, { search } from 'hangul-js'
+import hangul from 'hangul-js'
 
 export const useSearchStore = create((set, get) => ({
     searchQuery: null,

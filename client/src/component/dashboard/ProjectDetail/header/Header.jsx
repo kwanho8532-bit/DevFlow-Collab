@@ -3,9 +3,9 @@ import {
     Stack, Typography
 } from "@mui/material"
 
-import dayjs from 'dayjs';
-
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
+import dayjs from 'dayjs';
 import { useProjectStore } from "../../../../store/useProjectStore.js";
 import { getPriority } from "../../../../utils/dateHelper.js";
 

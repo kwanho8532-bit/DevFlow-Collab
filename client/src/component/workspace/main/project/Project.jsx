@@ -1,32 +1,21 @@
 import {
-    Box, Typography, Chip,
-    Avatar, Stack, Divider,
-    Paper, Button, IconButton,
-    Tooltip, LinearProgress
+    Box, Typography, Stack,
+    Divider,
 } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
-import { useProjectStore } from '../../../../store/useProjectStore';
-import { useAuthStore } from '../../../../store/useAuthStore';
-import { useEffect, useState } from 'react';
-import { useTaskStore } from '../../../../store/useTaskStore';
-import { useWorkspaceStore } from '../../../../store/useWorkspaceStore';
-import AddTaskDialog from '../../dialogs/AddTaskDialog';
-import TaskItem from '../task/TaskItem';
-import EditProjectDialog from '../../dialogs/EditProjectDialog';
-import DeleteProjectDialog from '../../dialogs/DeleteProjectDialog';
-import ProjectTasks from './ProjectTasks';
-import ProjectHeader from './ProjectHeader';
-import ProjectBody from './ProjectBody';
-import ArchivedOverlay from '../../../dashboard/ProjectDetail/overlay/ArchivedOverlay';
-import ArchiveOverlay from '../ArchiveOverlay';
 
-
+import { useProjectStore } from '../../../../store/useProjectStore.js';
+import { useEffect } from 'react';
+import { useTaskStore } from '../../../../store/useTaskStore.js';
+import { useWorkspaceStore } from '../../../../store/useWorkspaceStore.js';
+import ProjectTasks from './ProjectTasks.jsx';
+import ProjectHeader from './ProjectHeader.jsx';
+import ProjectBody from './ProjectBody.jsxProjectHeader.jsx';
+import ArchiveOverlay from '../ArchiveOverlay.jsxProjectHeader.jsx';
 
 export default function Project() {
     const selectedWorkspace = useWorkspaceStore(state => state.selectedWorkspace)
     const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)
     const getTasksInWorkspaceProject = useTaskStore(state => state.getTasksInWorkspaceProject)
-    const tasksInWorkspaceProject = useTaskStore(state => state.tasksInWorkspaceProject)
 
     const isArchivedProject = !!selectedProject?.archivedAt
 
@@ -39,8 +28,6 @@ export default function Project() {
     if (!selectedProject) return <Typography variant='h5' textAlign='center'>프로젝트를 선택해주세요.</Typography>;
 
     const isDoneOrArchive = ['DONE', 'ARCHIVE'].includes(selectedProject.status)
-
-    console.log(selectedWorkspace)
 
     return (
         <Box sx={{

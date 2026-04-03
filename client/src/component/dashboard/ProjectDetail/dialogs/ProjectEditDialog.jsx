@@ -5,12 +5,12 @@ import {
 } from "@mui/material";
 
 import { Controller, useForm } from "react-hook-form";
-import { useProjectStore } from "../../../../store/useProjectStore";
+import { useProjectStore } from "../../../../store/useProjectStore.js";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { addProjectSchema } from "../../../../schema/zod";
+import { addProjectSchema } from "../../../../schema/zod.js";
 import { useEffect } from "react";
 
 

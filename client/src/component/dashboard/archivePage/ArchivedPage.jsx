@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import Archvied from "./Archived";
+import Archvied from "./Archived.jsx";
 
 export default function ArchivedPage() {
     return (

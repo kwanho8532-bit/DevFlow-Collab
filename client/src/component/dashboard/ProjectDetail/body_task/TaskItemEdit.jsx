@@ -11,13 +11,13 @@ import EditOffIcon from '@mui/icons-material/EditOff';
 import SendIcon from '@mui/icons-material/Send';
 
 import { Controller, useForm } from "react-hook-form";
-import { importanceOptions } from "../../../etc/importanceOptions";
+import { importanceOptions } from "../../../etc/importanceOptions.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { addTaskSchema } from "../../../../schema/zod";
-import { useTaskStore } from "../../../../store/useTaskStore";
-import EditConfirm from "../dialogs/EditConfirm";
+import { addTaskSchema } from "../../../../schema/zod.js";
+import { useTaskStore } from "../../../../store/useTaskStore.js";
+import EditConfirm from "../dialogs/EditConfirm.jsx";
 import { useState } from "react";
-import DeleteConfirm from "../dialogs/DeleteConfirm";
+import DeleteConfirm from "../dialogs/DeleteConfirm.jsx";
 
 export default function TaskItemEdit({ task, toggleIsEditting }) {
     const editTask = useTaskStore(state => state.editTask)
@@ -28,8 +28,7 @@ export default function TaskItemEdit({ task, toggleIsEditting }) {
         register,
         control,
         handleSubmit,
-        reset,
-        formState: { isValid, errors, isDirty },
+        formState: { errors, isDirty },
         watch
     } = useForm({
         mode: 'onTouched',

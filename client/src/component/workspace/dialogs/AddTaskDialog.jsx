@@ -5,14 +5,15 @@ import {
     MenuItem, Select, TextField,
     Typography,
 } from "@mui/material";
+
 import CircleIcon from '@mui/icons-material/Circle';
 
 import { useForm, Controller } from "react-hook-form";
-import { importanceOptions } from "../../etc/importanceOptions";
+import { importanceOptions } from "../../etc/importanceOptions.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { addTaskSchema } from "../../../schema/zod";
-import { useProjectStore } from "../../../store/useProjectStore";
-import { useTaskStore } from "../../../store/useTaskStore";
+import { addTaskSchema } from "../../../schema/zod.js";
+import { useProjectStore } from "../../../store/useProjectStore.js";
+import { useTaskStore } from "../../../store/useTaskStore.js";
 
 
 export default function AddTaskDialog({ open, handleClose }) {
@@ -24,7 +25,7 @@ export default function AddTaskDialog({ open, handleClose }) {
         control,
         handleSubmit,
         reset,
-        formState: { isValid, errors },
+        formState: { isValid },
     } = useForm({
         mode: 'onTouched',
         reValidateMode: 'onChange',

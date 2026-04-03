@@ -1,6 +1,9 @@
-import Stack from "@mui/material/Stack";
+import {
+    Stack, Typography
+} from "@mui/material";
+
 import Diversity2Icon from '@mui/icons-material/Diversity2';
-import Typography from "@mui/material/Typography";
+
 import { Link } from 'react-router'
 import api from "../../api/axios.js";
 import { useEffect } from "react";

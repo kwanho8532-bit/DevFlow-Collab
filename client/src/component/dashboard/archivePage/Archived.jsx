@@ -5,15 +5,14 @@ import {
 
 import { DataGrid } from '@mui/x-data-grid';
 
-
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 
 import { useEffect, useState } from "react";
-import { useProjectStore } from "../../../store/useProjectStore";
+import { useProjectStore } from "../../../store/useProjectStore.js";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import OverdueDialog from "./OverdueDialog";
+import OverdueDialog from "./OverdueDialog.jsx";
 
 
 export default function Archvied() {
@@ -21,7 +20,6 @@ export default function Archvied() {
     const getArchivedProjects = useProjectStore(state => state.getArchivedProjects)
     const unarchiveProject = useProjectStore(state => state.unarchiveProject)
 
-    const [project, setProject] = useState(null)
     const [overdueDialogOpen, setOverdueDialogOpen] = useState(false)
 
     const handleOverdueOpen = () => {

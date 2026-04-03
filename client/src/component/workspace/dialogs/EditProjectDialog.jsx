@@ -1,8 +1,12 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField, Typography } from "@mui/material";
+import {
+    Box, Button, Dialog,
+    DialogActions, DialogContent, DialogTitle,
+    Stack, TextField, Typography
+} from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Controller, useForm } from "react-hook-form";
-import { useProjectStore } from "../../../store/useProjectStore";
+import { useProjectStore } from "../../../store/useProjectStore.js";
 import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editProjectSchema } from "../../../schema/zod.js";

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import api from '../component/api/axios'
+import api from '../component/api/axios.js'
 
 export const useProjectStore = create((set, get) => ({
     selectedProject: null,

@@ -1,14 +1,13 @@
-import { Box, Stack, Typography, TextField, InputAdornment } from "@mui/material";
+import {
+    Box, Stack, TextField,
+    InputAdornment
+} from "@mui/material";
+
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from "react";
-import { useProjectStore } from "../../../store/useProjectStore.js";
-import { useEffect } from "react";
+
 import { useSearchStore } from "../../../store/useSearchStore.js";
 
 export default function Header() {
-    const projects = useProjectStore(state => state.projects)
-
-    const searchQuery = useSearchStore(state => state.searchQuery)
     const setSearchQuery = useSearchStore(state => state.setSearchQuery)
 
 

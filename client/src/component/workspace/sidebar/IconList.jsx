@@ -1,10 +1,11 @@
-import { Box, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
-import WorkspaceDrawer from '../../dashboard/sidebar/WorkspaceDrawer';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useProjectStore } from '../../../store/useProjectStore';
-import { useWorkspaceStore } from '../../../store/useWorkspaceStore';
+import {
+    Box, Stack, Typography
+} from '@mui/material';
 
+import { useState } from 'react';
+import WorkspaceDrawer from '../../dashboard/sidebar/WorkspaceDrawer.jsx';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useProjectStore } from '../../../store/useProjectStore.js';
 
 export default function IconList({ menu, isNavOpen, setIsNavOpen, handleInviteOpen }) {
     const { id } = useParams()
@@ -12,7 +13,6 @@ export default function IconList({ menu, isNavOpen, setIsNavOpen, handleInviteOp
     const [isDrawerOpen, setDrawerOpen] = useState(false);
 
     const setSelectedProjectInWorkspace = useProjectStore(state => state.setSelectedProjectInWorkspace)
-    const clearSelectedWorkspace = useWorkspaceStore(state => state.clearSelectedWorkspace)
 
     const menuAction = (key) => {
         switch (key) {

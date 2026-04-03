@@ -3,14 +3,15 @@ import {
     Paper, Divider, Container,
     Chip, Tooltip
 } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+
 import { useInviteStore } from '../../../../store/useInviteStore.js';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Invite from './invite';
+import Invite from './Invite.jsx';
 
 export default function InviteInbox() {
     const invites = useInviteStore(state => state.invites)

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import WorkspaceArchive from "./WorkspaceArchive";
+import WorkspaceArchive from "./WorkspaceArchive.jsx";
 
 
 export default function WorkspaceArchivePage() {

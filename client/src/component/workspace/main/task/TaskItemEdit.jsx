@@ -1,9 +1,10 @@
 import {
-    Box, FormControl, IconButton, InputLabel, MenuItem, Paper, Select, Stack,
-    TextField,
-    Tooltip,
+    Box, FormControl, IconButton,
+    InputLabel, MenuItem, Select,
+    Stack, TextField, Tooltip,
     Typography
 } from "@mui/material";
+
 import CircleIcon from '@mui/icons-material/Circle';
 import EditOffIcon from '@mui/icons-material/EditOff';
 import SendIcon from '@mui/icons-material/Send';
@@ -11,24 +12,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { addTaskSchema } from "../../../../schema/zod";
-import { importanceOptions } from "../../../etc/importanceOptions";
-import { useTaskStore } from "../../../../store/useTaskStore";
-import TaskEditConfirm from "../../dialogs/TaskEditConfirm";
+import { addTaskSchema } from "../../../../schema/zod.js";
+import { importanceOptions } from "../../../etc/importanceOptions.jsx";
+import { useTaskStore } from "../../../../store/useTaskStore.js";
+import TaskEditConfirm from "../../dialogs/TaskEditConfirm.jsx";
 import { useState } from "react";
-import TaskDeleteConfirm from "../../dialogs/TaskDeleteConfirm";
+import TaskDeleteConfirm from "../../dialogs/TaskDeleteConfirm.jsx";
 
 export default function TaskItemEdit({ task, handleEditToggle }) {
     const editTaskInWorkspace = useTaskStore(state => state.editTaskInWorkspace)
     const [taskEditConfirmOpen, setTaskEditConfirmOpen] = useState(false)
     const [taskDeleteConfirmOpen, setTaskDeleteConfirmOpen] = useState(false)
 
-
     const {
         register,
         control,
         handleSubmit,
-        reset,
         watch,
         formState: { isValid, errors, isDirty },
     } = useForm({
@@ -79,8 +78,6 @@ export default function TaskItemEdit({ task, handleEditToggle }) {
     const handleTaskDeleteConfirmDialogClose = () => {
         setTaskDeleteConfirmOpen(false)
     }
-
-
 
     return (
         <Box

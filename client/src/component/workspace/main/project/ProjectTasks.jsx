@@ -1,16 +1,17 @@
 import {
-    IconButton, LinearProgress, Paper, Stack, Tooltip,
-    Typography
+    IconButton, LinearProgress, Paper,
+    Stack, Tooltip, Typography
 } from "@mui/material";
+
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-import AddTaskDialog from "../../dialogs/AddTaskDialog";
+import AddTaskDialog from "../../dialogs/AddTaskDialog.jsx";
 import { useState } from "react";
-import TaskItem from "../task/TaskItem";
-import { useTaskStore } from "../../../../store/useTaskStore";
-import { useProjectStore } from "../../../../store/useProjectStore";
+import TaskItem from "../task/TaskItem.jsx";
+import { useTaskStore } from "../../../../store/useTaskStore.js";
+import { useProjectStore } from "../../../../store/useProjectStore.js";
 import dayjs from "dayjs";
-import OverdueOrStatusAlertDialog from "../../dialogs/OverdueOrStatusAlertDialog";
+import OverdueOrStatusAlertDialog from "../../dialogs/OverdueOrStatusAlertDialog.jsx";
 
 
 export default function ProjectTasks({ isDoneOrArchive }) {

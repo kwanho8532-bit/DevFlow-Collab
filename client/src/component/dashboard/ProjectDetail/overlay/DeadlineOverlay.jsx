@@ -1,12 +1,15 @@
-import { Box, Button, Chip } from "@mui/material";
+import {
+    Box, Button, Chip
+} from "@mui/material";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ProjectDeleteDialog from "../dialogs/ProjectDeleteDialog";
-import { useProjectStore } from "../../../../store/useProjectStore";
+import ProjectDeleteDialog from "../dialogs/ProjectDeleteDialog.jsx";
+import { useProjectStore } from "../../../../store/useProjectStore.js";
 
 export default function DeadlineOverlay() {
     const navigate = useNavigate()

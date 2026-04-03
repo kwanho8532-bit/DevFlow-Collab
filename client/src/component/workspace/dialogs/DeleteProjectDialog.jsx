@@ -3,7 +3,8 @@ import {
     DialogActions, DialogContent, DialogContentText,
     DialogTitle, Typography
 } from "@mui/material";
-import { useProjectStore } from "../../../store/useProjectStore";
+
+import { useProjectStore } from "../../../store/useProjectStore.js";
 
 export default function DeleteProjectDialog({ open, handleClose }) {
     const selectedProjectInWorkspace = useProjectStore(state => state.selectedProjectInWorkspace)

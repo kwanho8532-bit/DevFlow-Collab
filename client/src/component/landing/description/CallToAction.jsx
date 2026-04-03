@@ -1,5 +1,9 @@
-import { Box, Container, Typography, Button, Paper, Stack, Chip } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite'; // 하트 아이콘으로 진심 표현
+import {
+    Box, Container, Typography,
+    Button, Paper, Stack,
+    Chip
+} from '@mui/material';
+
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { Link } from 'react-router';
 

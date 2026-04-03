@@ -1,37 +1,28 @@
 import {
-    Box,
-    Avatar,
-    Stack,
-    IconButton,
-    Typography,
-    SpeedDial,
-    SpeedDialIcon,
-    SpeedDialAction,
+    Box, Avatar, Stack,
+    Typography
 } from "@mui/material";
 
 import HomeIcon from '@mui/icons-material/Home';
 import MessageIcon from '@mui/icons-material/Message';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import DraftsIcon from '@mui/icons-material/Drafts';
 import MailIcon from '@mui/icons-material/Mail';
 
 import { useAuthStore } from "../../../store/useAuthStore.js";
 import { useState } from "react";
-import AddProject from "../AddProject";
+import AddProject from "../AddProject.jsx";
 import { useNavigate, } from "react-router-dom";
 import { shallow } from 'zustand/shallow'
-import WorkspaceDrawer from "./WorkspaceDrawer";
+import WorkspaceDrawer from "./WorkspaceDrawer.jsx";
 
 export default function Sidebar() {
     const auth = useAuthStore(state => state.auth, shallow)
 
     const [open, setOpen] = useState(false);
     const [isDrawerOpen, setDrawerOpen] = useState(false);
-    const [speedDialOpen, setSpeedDialOpen] = useState(false)
 
     const navigate = useNavigate()
 
@@ -42,13 +33,6 @@ export default function Sidebar() {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const handleDialOpen = () => setSpeedDialOpen(true)
-    const handleDialClose = () => setSpeedDialOpen(false)
-    const handleActionClick = (to) => {
-        navigate(to)
-        handleDialClose()
-    }
 
     // 1. 동작 분기 처리 (onClick 하나로 관리)
     const handleMenuAction = (key) => {

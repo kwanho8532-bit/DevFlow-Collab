@@ -2,9 +2,10 @@ import {
     Dialog, DialogTitle, DialogContent,
     DialogContentText, DialogActions, Button
 } from '@mui/material';
+
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { useTaskStore } from '../../../store/useTaskStore';
-import { useProjectStore } from '../../../store/useProjectStore';
+
+import { useProjectStore } from '../../../store/useProjectStore.js';
 
 export default function OverdueOrStatusAlertDialog({ open, handleClose }) {
     const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)

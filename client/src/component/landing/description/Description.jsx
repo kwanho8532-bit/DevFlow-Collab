@@ -1,7 +1,6 @@
-import Box from "@mui/material/Box";
-import CoreValue from "./CoreValue";
-import FeatureDetail from "./FeatureDetail";
-import CallToAction from "./CallToAction";
+import CoreValue from "./CoreValue.jsx";
+import FeatureDetail from "./FeatureDetail.jsx";
+import CallToAction from "./CallToAction.jsx";
 
 
 export default function Description() {

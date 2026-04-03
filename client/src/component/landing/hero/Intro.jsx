@@ -1,7 +1,7 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import {
+    Box, Button, Stack,
+    Typography
+} from "@mui/material";
 
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';

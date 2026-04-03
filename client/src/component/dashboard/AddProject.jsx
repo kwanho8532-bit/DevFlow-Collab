@@ -1,21 +1,13 @@
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Box,
-    TextField,
-    Stack,
-    Typography,
-
+    Button, Dialog, DialogActions,
+    DialogContent, DialogTitle, Box,
+    TextField, Stack, Typography,
 } from "@mui/material";
 
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import { useForm, Controller } from 'react-hook-form'
-import api from '../api/axios.js'
 import dayjs from 'dayjs'
 import { useProjectStore } from "../../store/useProjectStore.js";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,8 +21,6 @@ import { addProjectSchema } from "../../schema/zod.js";
 
 export default function AddProject({ open, handleClose }) {
     const addProject = useProjectStore(state => state.addProject)
-    const getProjects = useProjectStore(state => state.getProjects)
-    const projects = useProjectStore(state => state.projects)
 
     const {
         register,
@@ -38,7 +28,6 @@ export default function AddProject({ open, handleClose }) {
         handleSubmit,
         formState: { isValid, errors },
         reset,
-        setError,
     } = useForm({
         mode: 'onTouched',
         reValidateMode: 'onChange',

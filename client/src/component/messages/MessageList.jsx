@@ -8,6 +8,7 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { debounce } from "lodash";
 import api from "../api/axios.js";
@@ -23,7 +24,6 @@ export default function MessageList({ userList, setUserList }) {
     const chatRooms = useChatStore(state => state.chatRooms)
     const createChatRoom = useChatStore(state => state.createChatRoom)
     const setSelectedRoom = useChatStore(state => state.setSelectedRoom)
-    const getChatRooms = useChatStore(state => state.getChatRooms)
     const patchRead = useChatStore(state => state.patchRead)
     const auth = useAuthStore(state => state.auth)
 
@@ -92,13 +92,11 @@ export default function MessageList({ userList, setUserList }) {
     const handleListClick = (chat) => {
         try {
             setSelectedRoom(chat)
-            console.log(selectedChatRoom)
         } catch (err) {
             console.log(err)
         }
     }
 
-    console.log(chatRooms)
 
     return (
         <Paper

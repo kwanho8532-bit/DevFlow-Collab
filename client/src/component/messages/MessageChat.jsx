@@ -1,18 +1,16 @@
 import {
     Avatar, Box, IconButton,
     InputBase, Paper, Stack,
-    Tooltip,
-    Typography
+    Tooltip,Typography
 } from "@mui/material";
-
 
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import CloseIcon from '@mui/icons-material/Close';
+
 import { useChatStore } from "../../store/useChatStore.js";
 import { useAuthStore } from "../../store/useAuthStore.js";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 
 export default function MessageChat() {

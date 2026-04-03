@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import Sidebar from "./sidebar/Sidebar";
+import Sidebar from "./sidebar/Sidebar.jsx";
 import { Outlet } from "react-router-dom";
 
 

@@ -7,16 +7,16 @@ import {
     IconButton, Tooltip,
 
 } from "@mui/material";
+
 import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
 
 import { debounce } from 'lodash'
 import { useMemo } from "react";
-import api from "../../api/axios";
-import { useState, useRef } from "react";
-import { useEffect } from "react";
-import { useInviteStore } from "../../../store/useInviteStore";
-import { useWorkspaceStore } from "../../../store/useWorkspaceStore";
+import api from "../../api/axios.js";
+import { useState, useRef, useEffect } from "react";
+import { useInviteStore } from "../../../store/useInviteStore.js";
+import { useWorkspaceStore } from "../../../store/useWorkspaceStore.js";
 
 
 export default function InviteDialog({ open, handleClose, findUserList, setFindUserList }) {

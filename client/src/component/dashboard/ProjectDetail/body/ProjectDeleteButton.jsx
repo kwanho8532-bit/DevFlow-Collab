@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import ProjectDeleteDialog from "../dialogs/ProjectDeleteDialog";
+import ProjectDeleteDialog from "../dialogs/ProjectDeleteDialog.jsx";
 
 
 export default function ProjectDeleteButton() {

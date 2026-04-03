@@ -4,6 +4,7 @@ import {
 } from "@mui/material";
 
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+
 import { useProjectStore } from "../../../../store/useProjectStore.js";
 
 export default function TaskEditAlert({ alertOpen, handleAlertClose }) {

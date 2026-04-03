@@ -4,7 +4,8 @@ import {
 } from "@mui/material";
 
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { useProjectStore } from "../../../store/useProjectStore";
+
+import { useProjectStore } from "../../../store/useProjectStore.js";
 
 export default function EditProjectAlertDialog({ open, handleClose }) {
     const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)

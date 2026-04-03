@@ -1,20 +1,16 @@
 import {
     Grid, Paper, Box,
     Stack,
-    Chip,
-    Button,
-
 } from '@mui/material';
 
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import dayjs from 'dayjs';
 
-import Header from './header/Header';
-import Task from './body_task/Task';
+import Header from './header/Header.jsx';
+import Task from './body_task/Task.jsx';
 import Body from './body/Body.jsx';
 import ProjectEditButton from './body/ProjectEditButton.jsx';
-
 import { useProjectStore } from '../../../store/useProjectStore.js';
 import { useTaskStore } from '../../../store/useTaskStore.js';
 import DeadlineOverlay from './overlay/DeadlineOverlay.jsx';
@@ -32,7 +28,6 @@ export default function ProjectDetail() {
         return dayjs(deadline).isBefore(dayjs(), 'day')
     })
 
-    const tasks = useTaskStore(state => state.tasks)
     const getTasks = useTaskStore(state => state.getTasks)
 
 

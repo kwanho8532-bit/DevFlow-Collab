@@ -1,15 +1,18 @@
-import { Alert, Box, Chip, IconButton, Snackbar, Stack, Tooltip, Typography } from "@mui/material";
-import { DataGrid } from '@mui/x-data-grid';
-import { useProjectStore } from "../../../../store/useProjectStore";
-
+import {
+    Box, Chip, IconButton,
+    Stack, Tooltip, Typography
+} from "@mui/material";
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+
+import { DataGrid } from '@mui/x-data-grid';
+import { useProjectStore } from "../../../../store/useProjectStore.js";
+
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { useState } from "react";
-import OverdueConfirm from "../../dialogs/OverdueConfirm";
+import OverdueConfirm from "../../dialogs/OverdueConfirm.jsx";
 
 export default function WorkspaceArchive() {
     const { id } = useParams()
@@ -36,11 +39,6 @@ export default function WorkspaceArchive() {
     const handleOverdueDialogClose = () => {
         setOverdueDialogOpen(false)
     }
-
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false)
-    }
-
 
     const statusColor = {
         PLANNING: { bgcolor: '#EDE9FE', color: '#6D28D9' },

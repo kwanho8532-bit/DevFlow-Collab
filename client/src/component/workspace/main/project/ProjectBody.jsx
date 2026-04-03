@@ -2,19 +2,18 @@ import {
     Button, Paper, Stack,
     Tooltip, Typography,
 } from "@mui/material";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { useState } from "react";
-import DeleteProjectDialog from "../../dialogs/DeleteProjectDialog";
-import EditProjectDialog from "../../dialogs/EditProjectDialog";
-import { useAuthStore } from "../../../../store/useAuthStore";
-import { useProjectStore } from "../../../../store/useProjectStore";
-import StatusTransitionConfirm from "../../dialogs/StatusTransitionConfirm";
-import ArchivedConfirm from "../../dialogs/ArchivedConfirm";
-import EditProjectAlertDialog from "../../dialogs/EditProjectAlertDialog";
 
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
+import { useState } from "react";
+import DeleteProjectDialog from "../../dialogs/DeleteProjectDialog.jsx";
+import EditProjectDialog from "../../dialogs/EditProjectDialog.jsx";
+import { useProjectStore } from "../../../../store/useProjectStore.js";
+import StatusTransitionConfirm from "../../dialogs/StatusTransitionConfirm.jsx";
+import ArchivedConfirm from "../../dialogs/ArchivedConfirm.jsx";
+import EditProjectAlertDialog from "../../dialogs/EditProjectAlertDialog.jsx";
 
 export default function ProjectBody({ isDoneOrArchive }) {
-    const auth = useAuthStore(state => state.auth)
     const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)
 
     const [editProjectDialogOpen, setEditProjectDialogOpen] = useState(false)

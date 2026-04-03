@@ -2,8 +2,10 @@ import {
     Dialog, DialogTitle, DialogContent,
     DialogContentText, DialogActions, Button
 } from '@mui/material';
+
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { useProjectStore } from '../../../../store/useProjectStore'
+
+import { useProjectStore } from '../../../../store/useProjectStore.js'
 
 
 

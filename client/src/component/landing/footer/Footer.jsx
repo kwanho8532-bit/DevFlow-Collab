@@ -1,4 +1,9 @@
-import { Box, Container, Grid, Typography, Link, Stack, IconButton, Button } from '@mui/material';
+import {
+    Box, Container, Grid,
+    Typography, Stack, IconButton,
+    Button
+} from '@mui/material';
+
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 

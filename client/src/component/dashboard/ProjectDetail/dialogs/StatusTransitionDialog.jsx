@@ -1,13 +1,7 @@
 import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    DialogActions,
-    Button,
-    Typography,
-    Box,
-    Stack
+    Dialog, DialogTitle, DialogContent,
+    DialogContentText, DialogActions, Button,
+    Typography, Stack
 } from '@mui/material';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'; // 화살표 아이콘 추가 시

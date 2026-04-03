@@ -1,4 +1,8 @@
-import { Avatar, Button, Divider, Paper, Stack, Typography } from "@mui/material";
+import {
+    Avatar, Button, Divider,
+    Paper, Stack, Typography
+} from "@mui/material";
+
 import StatusTransitionDialog from "../dialogs/StatusTransitionDialog.jsx";
 import { useAuthStore } from "../../../../store/useAuthStore.js";
 import { useState } from "react";

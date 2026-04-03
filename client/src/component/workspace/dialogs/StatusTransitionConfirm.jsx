@@ -1,17 +1,15 @@
 import {
     Dialog, DialogTitle, DialogContent,
     DialogContentText, DialogActions, Button,
-    Typography, Box, Stack
+    Typography, Stack
 } from '@mui/material';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'; // 화살표 아이콘 추가 시
+
 import { useProjectStore } from '../../../store/useProjectStore.js';
-import { useAuthStore } from '../../../store/useAuthStore.js';
 
 
 export default function StatusTransitionConfirm({ currentStatus, nextStatus, open, handleClose }) {
-    const auth = useAuthStore(state => state.auth)
-    const selectedProject = useProjectStore(state => state.selectedProjectInWorkspace)
     const statusTransition = useProjectStore(state => state.statusTransition)
 
     const statusTransitionRequest = async (nextStatus) => {

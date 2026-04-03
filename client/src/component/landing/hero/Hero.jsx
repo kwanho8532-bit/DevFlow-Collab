@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
-import Nav from "./Nav";
-import Intro from "./Intro";
+import { Box } from "@mui/material";
+import Nav from "./Nav.jsx";
+import Intro from "./Intro.jsx";
 
 export default function Hero() {
     return (

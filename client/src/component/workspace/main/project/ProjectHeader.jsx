@@ -2,8 +2,9 @@ import {
     Avatar, Box, Chip,
     Stack, Typography
 } from "@mui/material";
-import { useProjectStore } from "../../../../store/useProjectStore";
-import { getPriority } from "../../../../utils/dateHelper";
+
+import { useProjectStore } from "../../../../store/useProjectStore.js";
+import { getPriority } from "../../../../utils/dateHelper.js";
 
 
 export default function ProjectHeader() {

@@ -1,15 +1,7 @@
 import {
     Box, IconButton, LinearProgress,
-    Stack, Typography, Checkbox,
-    Tooltip,
-    Paper,
-    Chip,
+    Stack, Typography, Tooltip,
     List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Button,
 } from "@mui/material";
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -23,10 +15,7 @@ import AlertDialog from "../dialogs/AlertDialog.jsx";
 import { useTaskStore } from "../../../../store/useTaskStore.js";
 import ConfirmDialog from "../dialogs/ConfirmDialog.jsx";
 
-import { getImportanceOptions, importanceOptions } from "../../../etc/importanceOptions.jsx";
-import { cloneElement } from "react";
 import TaskList from "./TaskList.jsx";
-import TaskItemEdit from "./TaskItemEdit.jsx";
 
 export default function Task() {
     const selectedProject = useProjectStore(state => state.selectedProject)

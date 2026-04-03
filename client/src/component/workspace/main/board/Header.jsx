@@ -1,21 +1,19 @@
 import {
     Box, Stack, TextField,
     InputAdornment, IconButton, Tooltip,
-    AvatarGroup,
-    Avatar,
+    AvatarGroup, Avatar,
 } from "@mui/material";
 
 import SearchIcon from '@mui/icons-material/Search';
 import MessageIcon from '@mui/icons-material/Message';
 import MailIcon from '@mui/icons-material/Mail';
 
-import { useSearchStore } from "../../../../store/useSearchStore";
+import { useSearchStore } from "../../../../store/useSearchStore.js";
 import { useNavigate } from "react-router-dom";
-import { useWorkspaceStore } from "../../../../store/useWorkspaceStore";
+import { useWorkspaceStore } from "../../../../store/useWorkspaceStore.js";
 import { useEffect } from "react";
 
 export default function Header() {
-    const searchQuery = useSearchStore(state => state.searchQuery)
     const setSearchQuery = useSearchStore(state => state.setSearchQuery)
     const selectedWorkspace = useWorkspaceStore(state => state.selectedWorkspace)
     const getWorkspaceMember = useWorkspaceStore(state => state.getWorkspaceMember)
@@ -52,8 +50,6 @@ export default function Header() {
                 break;
         }
     }
-
-    console.log(selectedWorkspaceMember)
 
     return (
         // #eee를 rgb로 변환한 값: 238,238,238

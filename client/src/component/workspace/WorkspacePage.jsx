@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
+
 import { useEffect, useState } from "react";
-import Sidebar from "./sidebar/Sidebar";
-import MiddleNav from "./middleNav/MiddleNav";
+import Sidebar from "./sidebar/Sidebar.jsx";
+import MiddleNav from "./middleNav/MiddleNav.jsx";
 import { Outlet, useParams } from "react-router-dom";
-import { useWorkspaceStore } from "../../store/useWorkspaceStore";
-import { useProjectStore } from "../../store/useProjectStore";
+import { useWorkspaceStore } from "../../store/useWorkspaceStore.js";
+import { useProjectStore } from "../../store/useProjectStore.js";
 
 
 export default function WorkspacePage() {

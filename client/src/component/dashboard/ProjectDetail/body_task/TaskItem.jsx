@@ -1,22 +1,17 @@
 import {
     Box, Checkbox, IconButton, ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Paper,
-    Stack, Tooltip
+    ListItemButton, ListItemIcon, ListItemText,
+    Paper, Stack, Tooltip
 } from "@mui/material"
 
 import EditIcon from '@mui/icons-material/Edit';
-import EditOffIcon from '@mui/icons-material/EditOff';
 
 import { cloneElement, useState } from "react"
-import { getImportanceOptions } from "../../../etc/importanceOptions"
-import { useTaskStore } from "../../../../store/useTaskStore"
-import TaskItemEdit from "./TaskItemEdit";
-import { useProjectStore } from "../../../../store/useProjectStore";
-import dayjs from "dayjs";
-import TaskEditAlert from "../dialogs/TaskEditAlert.";
+import { getImportanceOptions } from "../../../etc/importanceOptions.jsx"
+import { useTaskStore } from "../../../../store/useTaskStore.js"
+import TaskItemEdit from "./TaskItemEdit.jsx";
+import { useProjectStore } from "../../../../store/useProjectStore.js";
+import TaskEditAlert from "../dialogs/TaskEditAlert.jsx";
 
 export default function TaskItem({ task, setIsConfirmOpen, setPendingTaskId }) {
     const selectedProject = useProjectStore(state => state.selectedProject)

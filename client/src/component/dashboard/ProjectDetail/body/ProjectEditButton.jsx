@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import ProjectEditDialog from "../dialogs/ProjectEditDialog";
-import { useProjectStore } from "../../../../store/useProjectStore";
-import EditAlertOpen from "../dialogs/EditAlertDialog";
+import ProjectEditDialog from "../dialogs/ProjectEditDialog.jsx";
+import { useProjectStore } from "../../../../store/useProjectStore.js";
+import EditAlertOpen from "../dialogs/EditAlertDialog.jsx";
 
 
 export default function ProjectEditButton() {

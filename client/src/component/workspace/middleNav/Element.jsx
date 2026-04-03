@@ -1,5 +1,8 @@
-import { ListItemButton, ListItemText } from "@mui/material";
-import { useProjectStore } from "../../../store/useProjectStore";
+import {
+    ListItemButton, ListItemText
+} from "@mui/material";
+
+import { useProjectStore } from "../../../store/useProjectStore.js";
 import { useNavigate, useParams } from "react-router-dom";
 
 

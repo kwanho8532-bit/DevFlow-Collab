@@ -5,11 +5,10 @@ import {
     Tooltip, Avatar
 } from "@mui/material";
 import { cloneElement, useState } from "react";
-import { importanceRGBA, getImportanceOptions } from "../../../etc/importanceOptions";
+import { importanceRGBA, getImportanceOptions } from "../../../etc/importanceOptions.jsx";
 import { useTaskStore } from "../../../../store/useTaskStore.js";
 import EditIcon from '@mui/icons-material/Edit';
-import TaskEditItem from "./TaskItemEdit";
-import { useProjectStore } from "../../../../store/useProjectStore.js";
+import TaskEditItem from "./TaskItemEdit.jsx";
 
 export default function TaskItem({ task, isOverdue, isDoneOrArchive, handleOpen }) {
     const toggleTaskInWorkspaceProject = useTaskStore(state => state.toggleTaskInWorkspaceProject)
