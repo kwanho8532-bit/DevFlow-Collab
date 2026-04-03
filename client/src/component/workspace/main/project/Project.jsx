@@ -10,7 +10,7 @@ import { useWorkspaceStore } from '../../../../store/useWorkspaceStore.js';
 import ProjectTasks from './ProjectTasks.jsx';
 import ProjectHeader from './ProjectHeader.jsx';
 import ProjectBody from './ProjectBody.jsx';
-import ArchiveOverlay from '../ArchiveOverlay.jsxProjectHeader.jsx';
+import ArchiveOverlay from '../ArchiveOverlay.jsx';
 
 export default function Project() {
     const selectedWorkspace = useWorkspaceStore(state => state.selectedWorkspace)
