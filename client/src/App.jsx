@@ -19,6 +19,7 @@ import InviteBox from './component/workspace/main/invite-box/InviteBox.jsx';
 import { Alert, Snackbar } from '@mui/material';
 import { useSnackbarStore } from './store/useSnackbarStore.js';
 import MessagePage from './component/messages/MessagePage.jsx';
+import { Analytics } from '@vercel/analytics/react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko'; // 한국어 로케일 불러오기
 
@@ -30,6 +31,7 @@ function App() {
   return (
     <>
       <CssBaseline />
+      <Analytics />
 
       <BrowserRouter>
         <Spinner content='Loading' />
