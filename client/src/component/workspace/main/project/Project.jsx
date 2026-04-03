@@ -9,7 +9,7 @@ import { useTaskStore } from '../../../../store/useTaskStore.js';
 import { useWorkspaceStore } from '../../../../store/useWorkspaceStore.js';
 import ProjectTasks from './ProjectTasks.jsx';
 import ProjectHeader from './ProjectHeader.jsx';
-import ProjectBody from './ProjectBody.jsxProjectHeader.jsx';
+import ProjectBody from './ProjectBody.jsx';
 import ArchiveOverlay from '../ArchiveOverlay.jsxProjectHeader.jsx';
 
 export default function Project() {
