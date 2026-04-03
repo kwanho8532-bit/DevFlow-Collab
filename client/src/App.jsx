@@ -1,24 +1,24 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import LandingPage from './component/landing/LandingPage'
+import LandingPage from './component/landing/LandingPage.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router';
-import Signup from './component/sign/Signup';
-import Signin from './component/sign/Signin';
-import ContextLayout from './component/wrap/ContextLayout'
-import Hub from './component/hub/hub';
-import DashBoardPage from './component/dashboard/DashBoardPage'
-import ProjectDetail from './component/dashboard/ProjectDetail/ProjectDetail';
-import ProtectedRoute from './component/wrap/ProtectedRoute';
-import Spinner from './component/etc/Spinner';
-import KanbanPage from './component/dashboard/kanban/KanbanPage';
-import ArchivedPage from './component/dashboard/archivePage/ArchivedPage';
-import WorkspacePage from './component/workspace/WorkspacePage';
-import WorkspaceArchivePage from './component/workspace/main/archive/WorkspaceArchivePage';
-import MainBoard from './component/workspace/main/board/MainBoard';
-import Board from './component/workspace/main/board/Board';
-import InviteBox from './component/workspace/main/invite-box/InviteBox';
+import Signup from './component/sign/Signup.jsx';
+import Signin from './component/sign/Signin.jsx';
+import ContextLayout from './component/wrap/.jsx'
+import Hub from './component/hub/Hub.jsx';
+import DashBoardPage from './component/dashboard/DashBoardPage.jsx'
+import ProjectDetail from './component/dashboard/ProjectDetail/ProjectDetail.jsx';
+import ProtectedRoute from './component/wrap/ProtectedRoute.jsx';
+import Spinner from './component/etc/Spinner.jsx';
+import KanbanPage from './component/dashboard/kanban/KanbanPage.jsx';
+import ArchivedPage from './component/dashboard/archivePage/ArchivedPage.jsx';
+import WorkspacePage from './component/workspace/WorkspacePage.jsx';
+import WorkspaceArchivePage from './component/workspace/main/archive/WorkspaceArchivePage.jsx';
+import MainBoard from './component/workspace/main/board/MainBoard.jsx';
+import Board from './component/workspace/main/board/Board.jsx';
+import InviteBox from './component/workspace/main/invite-box/InviteBox.jsx';
 import { Alert, Snackbar } from '@mui/material';
-import { useSnackbarStore } from './store/useSnackbarStore';
-import MessagePage from './component/messages/MessagePage';
+import { useSnackbarStore } from './store/useSnackbarStore.js';
+import MessagePage from './component/messages/MessagePage.jsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko'; // 한국어 로케일 불러오기
 

@@ -4,6 +4,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import session from 'express-session'
 import passport from 'passport'
+import MongoStore from 'connect-mongo'
+import cors from 'cors'
 
 import signRouter from './routes/sign.js'
 import globalRouter from './routes/global.js'
@@ -44,12 +46,36 @@ const sessionConfig = {
     // 기본값은 false지만 명시적으로 false를 해줌 
     // 이후 axios.interceptors와 zustand(useAuthStore), interval로 getAuth요청을 보내는 방식으로
     // 세션이 만료되면 signin으로 튕기도록 만들었음
+    store: MongoStore.create({
+        mongoUrl: process.env.DB_URL,
+        collectionName: 'sessions',
+        ttl: 60 * 60 * 3 // 초단위 (보통 maxAge와 값 맞춤)
+        // maxAge는 브라우저 기준으로 쿠키가 언제 삭제될지를 지정
+        // ttl은 DB기준으로 세션 문서가 언제 삭제될지를 지정
+
+        // ⚠️ 둘이 다르면 어떻게 되냐?
+        // 상황	                    결과
+        // cookie 만료, ttl 남음	DB에 세션은 남아있지만 접근 불가
+        // ttl 만료, cookie 남음	쿠키는 있지만 세션 없음 → 로그아웃
+        // 둘 다 같음	            👍 가장 이상적
+    }),
     cookie: {
-        httpOnly: false,
-        secure: false,
-        maxAge: 1000 * 60 * 60
+        // 개발 환경
+        // httpOnly: false,
+        // secure: false,
+
+        // 프로덕트 환경
+        httpOnly: true,
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 3
     }
 }
+
+app.use(cors({
+    // origin: ,
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+    credentials: true
+}))
 
 app.use(session(sessionConfig))
 
@@ -100,6 +126,8 @@ app.use((err, req, res, next) => {
     return res.status(status).json({ message, })
 })
 
-app.listen(3000, () => {
-    console.log('Listening on the 3000 port!')
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+    console.log(`Listening on the ${port} port!`)
 })
