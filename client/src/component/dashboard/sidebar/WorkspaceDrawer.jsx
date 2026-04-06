@@ -120,8 +120,8 @@ export default function WorkspaceDrawer({ isDrawerOpen, setDrawerOpen, setIsNavO
                             onClick={() => {
                                 console.log("함수 존재 확인:", typeof setSelectedProjectInWorkspace); // 'function'이 나와야 함
                                 setDrawerOpen(false)
-                                setSelectedProjectInWorkspace(null)
                                 setIsNavOpen(true)
+                                setSelectedProjectInWorkspace(null)
                             }
                             }
                             component={Link}
