@@ -22,6 +22,11 @@ import * as Sentry from '@sentry/node'; // ✅ ESM 방식으로 불러오기
 // 1. Sentry 초기화 (모든 코드의 최상단)
 Sentry.init({
     dsn: process.env.GLITCHTIP_DSN,
+    // ⚠️ v8에서는 requestHandler를 명시적으로 
+    // app.use(Sentry.Handlers.requestHandler());
+    // app.use(Sentry.Handlers.tracingHandler());
+    // 할 필요가 없는 경우가 많습니다.
+    // 대신 SDK가 자동으로 HTTP 요청을 추적합니다.
     autoSessionTracking: false,
     tracesSampleRate: 1.0,
     environment: process.env.NODE_ENV === 'production' ? "production" : "development",
@@ -143,7 +148,7 @@ app.use('/api/chat', chatRouter)
 
 // 3. Sentry 에러 핸들러 (Error Handler)
 // 반드시 모든 라우터보다 '뒤에' 위치해야 합니다.
-app.use(Sentry.Handlers.errorHandler());
+Sentry.setupExpressErrorHandler(app);
 
 app.use((err, req, res, next) => {
     // console.log(err, '147')
