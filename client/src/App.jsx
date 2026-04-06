@@ -1,6 +1,13 @@
+// import.meta.env.PROD는 현재 앱이 실행 중인 환경이
+// '배포용(Production)'인지 아닌지를 나타내는 불리언(Boolean) 값을 가지고 있습니다.
+// 즉 아래의 코드는 process.env.NODE_ENV === "production" 이 코드와 동일함
+if (import.meta.env.PROD) {
+  ReactGA.initialize(import.meta.env.VITE_GA_ID);
+}
+
 import CssBaseline from '@mui/material/CssBaseline';
 import LandingPage from './component/landing/LandingPage.jsx'
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
 import Signup from './component/sign/Signup.jsx';
 import Signin from './component/sign/Signin.jsx';
 import ContextLayout from './component/wrap/ContextLayout.jsx'
@@ -21,8 +28,23 @@ import { useSnackbarStore } from './store/useSnackbarStore.js';
 import MessagePage from './component/messages/MessagePage.jsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko'; // 한국어 로케일 불러오기
+import ReactGA from "react-ga4";
 
 dayjs.locale('ko'); // 전역적으로 한국어 설정 적용
+
+const RouteTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // 현재 경로를 GA4로 전송합니다.
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname + location.search
+    });
+  }, [location]);
+
+  return null;
+};
 
 function App() {
   const { open, message, severity, clearSnackbar } = useSnackbarStore()
@@ -32,6 +54,7 @@ function App() {
       <CssBaseline />
 
       <BrowserRouter>
+        <RouteTracker />
         <Spinner content='Loading' />
         <Routes>
           <Route element={<ContextLayout />}>
