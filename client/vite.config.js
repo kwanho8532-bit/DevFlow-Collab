@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { sentryVitePlugin } from "@sentry/vite-plugin";
+import Sitemap from 'vite-plugin-sitemap'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
       authToken: process.env.GLITCHTIP_AUTH_TOKEN, // 1단계에서 만든 토큰
       url: "https://app.glitchtip.com/"
     }),
+    Sitemap({ hostname: 'https://dev-flow-collab.duckdns.org' }), // 실제 배포된 주소 입력
   ],
   build: {
     sourcemap: true, // ✅ 필수: 빌드 시 .map 파일을 생성하도록 설정
