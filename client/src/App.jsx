@@ -29,6 +29,7 @@ import MessagePage from './component/messages/MessagePage.jsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko'; // 한국어 로케일 불러오기
 import ReactGA from "react-ga4";
+import { useEffect } from 'react';
 
 dayjs.locale('ko'); // 전역적으로 한국어 설정 적용
 
