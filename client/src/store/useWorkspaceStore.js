@@ -18,7 +18,6 @@ export const useWorkspaceStore = create((set, get) => ({
     getMyWorkspaces: async () => {
         try {
             const { data } = await api.get('/workspace/mine')
-            console.log(data)
             set({ myWorkspaces: data })
         } catch (err) {
             console.log(err)
@@ -55,7 +54,6 @@ export const useWorkspaceStore = create((set, get) => ({
     acceptAndJoin: async (inviteId) => {
         try {
             const { data } = await api.patch(`/invite/${inviteId}`)
-            console.log(data)
             set(state => ({
                 // selectedWorkspaceMember는 user 객체 배열임
                 selectedWorkspaceMember: [...state.selectedWorkspaceMember, data.newWorkspaceMember],

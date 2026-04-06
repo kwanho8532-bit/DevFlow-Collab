@@ -17,7 +17,6 @@ export const useChatStore = create((set, get) => ({
         try {
             const { data } = await api.get(`/chat/${chatId}`,
                 { headers: { 'x-skip-loading': 'true' } })
-            console.log(data)
             set({ messages: data })
         } catch (err) {
             console.log(err)
@@ -42,8 +41,7 @@ export const useChatStore = create((set, get) => ({
             const { data } = await api.post(`/chat/${chatId}/message`,
                 { message },
                 { headers: { 'x-skip-loading': 'true' } })
-            console.log(data)
-            console.log(get().selectedChatRoom.lastMessage, 'BEFORE!')
+
             set(state => ({
                 messages: [...state.messages, data],
                 chatRooms: state.chatRooms.map(room => {
@@ -54,7 +52,6 @@ export const useChatStore = create((set, get) => ({
                     )
                 }).sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt))
             }))
-            console.log(get().selectedChatRoom.lastMessage, 'AFTER!')
         } catch (err) {
             console.log(err)
         }

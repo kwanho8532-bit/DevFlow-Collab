@@ -208,7 +208,6 @@ export default function MessageList({ userList, setUserList }) {
                 <List sx={{ flexGrow: 1, overflowY: 'auto', px: 1.5, pb: 2 }}>
                     {chatRooms.map((chat) => {
                         const otherUser = chat.participants.find(p => p._id !== auth._id)
-                        console.log(otherUser)
                         return (
                             <ListItemButton
                                 key={chat._id}

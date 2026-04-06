@@ -24,7 +24,6 @@ export const useAuthStore = create(
                 const { data } = await api.get('/me/auth/status', {
                     headers: { 'x-skip-loading': 'true' }
                 })
-                console.log('set({auth: data}) 호출 ')
                 set({ auth: data })
             } catch (err) {
                 // 인터셉터에서 401 처리를 하므로 여기서는 특별한 로직이 없어도 되지만,

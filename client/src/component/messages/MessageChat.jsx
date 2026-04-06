@@ -40,7 +40,6 @@ export default function MessageChat() {
 
     const handleSend = async (chatId, message) => {
         try {
-            console.log(chatId, message, 'front handleSend function')
             await createMessage(chatId, message)
         } catch (err) {
             console.log(err)
@@ -134,7 +133,6 @@ export default function MessageChat() {
                     {/* 채팅창 */}
                     <Box sx={{ flex: 1, p: 4, bgcolor: '#F8FAFC', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 1 }}>
                         {messages.map(msg => {
-                            console.log(msg)
                             const mine = msg.sender._id === auth._id
                             return (
                                 <Stack key={msg._id} direction='row' spacing={1} alignItems='flex-end' sx={{alignSelf: mine? 'flex-end':'flex-start', maxWidth: '70%',}}>

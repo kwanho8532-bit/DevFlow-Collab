@@ -11,7 +11,6 @@ export default function ProtectedRoute() {
     useEffect(() => {
         const interval = setInterval(() => {
             checkAuth()
-            console.log(auth)
         }, 1000 * 60 * 5)
 
         // 해당 DashboardPage 컴포넌트가 언마운트 되면 인터벌 종료하도록 함 

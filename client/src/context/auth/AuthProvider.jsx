@@ -11,7 +11,6 @@ export default function AuthProvider({ children }) {
         async function getAuth() {
             try {
                 const { data } = await api.get('/me/auth', { withCredentials: true })
-                console.log(auth)
                 setAuth(data.user)
             } catch (err) {
                 console.log(err)
