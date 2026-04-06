@@ -30,6 +30,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko'; // 한국어 로케일 불러오기
 import ReactGA from "react-ga4";
 import { useEffect } from 'react';
+import * as Sentry from "@sentry/react";
 
 dayjs.locale('ko'); // 전역적으로 한국어 설정 적용
 
@@ -52,58 +53,66 @@ function App() {
 
   return (
     <>
-      <CssBaseline />
+      <Sentry.ErrorBoundary
+        fallback={
+          <div style={{ padding: '20px' }}>
+            <h2>알 수 없는 오류가 발생했습니다.</h2>
+            <p>페이지를 새로고침하거나 잠시 후 다시 시도해주세요.</p>
+          </div>
+        }>
+        <CssBaseline />
 
-      <BrowserRouter>
-        <RouteTracker />
-        <Spinner content='Loading' />
-        <Routes>
-          <Route element={<ContextLayout />}>
-            <Route element={<LandingPage />} path='/landing' />
-            <Route element={<Signin />} path='/signin' />
-            <Route element={<Signup />} path='/signup' />
-            <Route element={<Hub />} path='/hub' />
+        <BrowserRouter>
+          <RouteTracker />
+          <Spinner content='Loading' />
+          <Routes>
+            <Route element={<ContextLayout />}>
+              <Route element={<LandingPage />} path='/landing' />
+              <Route element={<Signin />} path='/signin' />
+              <Route element={<Signup />} path='/signup' />
+              <Route element={<Hub />} path='/hub' />
 
-            <Route element={<ProtectedRoute />}>
-              <Route element={<DashBoardPage />}>
-                <Route element={<KanbanPage />} path='/dashboard' />
-                <Route element={<ArchivedPage />} path='/archived' />
-              </Route>
-              <Route element={<ProjectDetail />} path='/project/:id' />
-
-              <Route element={<WorkspacePage />} path='/workspace/:id'>
-                <Route element={<MainBoard />}>
-                  <Route index element={<Board />} />
-                  {/* 부모가 이미 /workspace/:id 이기 때문에 /workspace/:id/archive 대신 archive만 작성해도 됨 */}
-                  <Route element={<WorkspaceArchivePage />} path='/workspace/:id/archive' />
+              <Route element={<ProtectedRoute />}>
+                <Route element={<DashBoardPage />}>
+                  <Route element={<KanbanPage />} path='/dashboard' />
+                  <Route element={<ArchivedPage />} path='/archived' />
                 </Route>
+                <Route element={<ProjectDetail />} path='/project/:id' />
+
+                <Route element={<WorkspacePage />} path='/workspace/:id'>
+                  <Route element={<MainBoard />}>
+                    <Route index element={<Board />} />
+                    {/* 부모가 이미 /workspace/:id 이기 때문에 /workspace/:id/archive 대신 archive만 작성해도 됨 */}
+                    <Route element={<WorkspaceArchivePage />} path='/workspace/:id/archive' />
+                  </Route>
+                </Route>
+
+                <Route element={<MessagePage />} path='/messages' />
+
+                <Route element={<InviteBox />} path='/invite-box' />
+
+
               </Route>
-
-              <Route element={<MessagePage />} path='/messages' />
-
-              <Route element={<InviteBox />} path='/invite-box' />
-
-
             </Route>
-          </Route>
-        </Routes>
+          </Routes>
 
-        {/* ✅ 전역 스낵바 설정 */}
-        <Snackbar
-          open={open}
-          autoHideDuration={3000}
-          onClose={clearSnackbar}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        >
-          <Alert
+          {/* ✅ 전역 스낵바 설정 */}
+          <Snackbar
+            open={open}
+            autoHideDuration={3000}
             onClose={clearSnackbar}
-            severity={severity}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           >
-            {message}
-          </Alert>
-        </Snackbar>
+            <Alert
+              onClose={clearSnackbar}
+              severity={severity}
+            >
+              {message}
+            </Alert>
+          </Snackbar>
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </Sentry.ErrorBoundary >
     </>
   )
 }
