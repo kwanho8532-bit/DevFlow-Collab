@@ -35,11 +35,6 @@ Sentry.init({
     enabled: process.env.NODE_ENV === 'production'
 });
 
-// 2. 요청 핸들러 (Request Handler)
-// 반드시 모든 라우터 설정보다 '앞에' 와야 합니다.
-app.use(Sentry.Handlers.requestHandler());
-app.use(Sentry.Handlers.tracingHandler());
-
 const DB_URL = process.env.DB_URL
 mongoose.connect(DB_URL);
 
@@ -54,6 +49,11 @@ db.once('open', () => {
 });
 
 const app = express()
+
+// 2. 요청 핸들러 (Request Handler)
+// 반드시 모든 라우터 설정보다 '앞에' 와야 합니다.
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
