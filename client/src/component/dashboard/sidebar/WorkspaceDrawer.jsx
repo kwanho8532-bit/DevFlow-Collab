@@ -118,6 +118,7 @@ export default function WorkspaceDrawer({ isDrawerOpen, setDrawerOpen, setIsNavO
                             key={workspace._id}
                             disablePadding
                             onClick={() => {
+                                console.log("함수 존재 확인:", typeof setSelectedProjectInWorkspace); // 'function'이 나와야 함
                                 setDrawerOpen(false)
                                 setSelectedProjectInWorkspace(null)
                                 setIsNavOpen(true)
