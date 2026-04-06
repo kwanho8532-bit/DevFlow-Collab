@@ -17,6 +17,28 @@ import inviteRouter from './routes/invite.js'
 import chatRouter from './routes/chat.js'
 
 import configurePassport from './config/passport.js'
+import * as Sentry from '@sentry/node'; // ✅ ESM 방식으로 불러오기
+
+// 1. Sentry 초기화 (모든 코드의 최상단)
+Sentry.init({
+    dsn: process.env.GLITCHTIP_DSN,
+    autoSessionTracking: false,
+    tracesSampleRate: 1.0,
+    environment: process.env.NODE_ENV === 'production' ? "production" : "development",
+    release: "devflow-backend@1.0.0",
+    beforeSend(event) {
+        if (event.request && event.request.url.includes("signin")) {
+            delete event.request.data; // 로그인 관련 데이터는 전송하지 않음
+        }
+        return event;
+    },
+    enabled: process.env.NODE_ENV === 'production'
+});
+
+// 2. 요청 핸들러 (Request Handler)
+// 반드시 모든 라우터 설정보다 '앞에' 와야 합니다.
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
 
 const DB_URL = process.env.DB_URL
 mongoose.connect(DB_URL);
@@ -114,13 +136,14 @@ app.use('/api', inviteRouter)
 
 app.use('/api/chat', chatRouter)
 
-// app.use('/api/messages', chatRouter)
-
-
 // 위의 archive/ unarchive는 project라우터에 넣고,
 // 아래의 task관련은 project에 속해있긴 하지만
 // 그 자체로 많은 데이터를 가진 별개의 주체로 보고
 // task라우터로 분리해서 정리하기
+
+// 3. Sentry 에러 핸들러 (Error Handler)
+// 반드시 모든 라우터보다 '뒤에' 위치해야 합니다.
+app.use(Sentry.Handlers.errorHandler());
 
 app.use((err, req, res, next) => {
     // console.log(err, '147')
