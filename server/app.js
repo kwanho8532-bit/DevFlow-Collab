@@ -75,7 +75,7 @@ const sessionConfig = {
 }
 
 const allowedOrigins = [
-    'https://dev-flow-collab.vercel.app', // 배포 시 vercel 주소
+    'https://dev-flow-collab.duckdns.org', // 배포 시 vercel 주소
     'http://localhost:5173' // 로컬 테스트용
 ]
 
