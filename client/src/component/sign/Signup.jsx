@@ -21,6 +21,7 @@ import Spinner from "../etc/Spinner.jsx";
 import { useAuthStore } from "../../store/useAuthStore.js";
 import { useLoadingStore } from "../../store/useLoadingStore.js";
 import { Helmet } from "react-helmet-async";
+import ReactGA from 'react-ga4'
 
 // 로그아웃까지 구현 했으니까 로그인 구현해야됨
 // 이후에 landing 컨텐츠 더 만들고 
@@ -63,6 +64,11 @@ export default function Signup() {
 
         try {
             const res = await api.post('/signup', formData)
+            ReactGA.event({
+                category: 'User',
+                action: 'Register',
+                // label: 이거 google 로그인 기능을 넣는다면 google로 많이 가입하는지? 아니면 다른 수단으로 가입하는지? => 낮은 가입 수단은 제거할 수 도 있음
+            })
             changeAuth(res.data.user)
             if (res.data.action === 'REDIRECT') {
                 navigate('/hub', {

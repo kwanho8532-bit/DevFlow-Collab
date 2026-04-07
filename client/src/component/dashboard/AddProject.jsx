@@ -12,6 +12,7 @@ import dayjs from 'dayjs'
 import { useProjectStore } from "../../store/useProjectStore.js";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addProjectSchema } from "../../schema/zod.js";
+import ReactGA from 'react-ga4'
 
 // addProject 클릭 시 project 생성하는 로직 구현
 // 그렇게 하고 나서 auth(유저)의 projectMember의 lastAccessedAt을 
@@ -41,9 +42,19 @@ export default function AddProject({ open, handleClose }) {
 
     const handleRegistration = async (formData) => {
         try {
-            addProject(formData)
+            await addProject(formData)
+            ReactGA.event({
+                category: 'Project',
+                action: 'Create_Success',
+                label: formData.deadline // deadline을 어디로 많이 잡는가? (단기적? 장기적? -> 이에 따라 리팩토링 가능)
+            })
         } catch (err) {
             console.log(err.response)
+            ReactGA.event({
+                category: 'Project',
+                action: 'Create_Fail',
+                label: err.response?.data?.message || 'Error발생' // 어디서 주로 에러가 발생하는가? 
+            })
         } finally {
             reset()
             handleClose()
