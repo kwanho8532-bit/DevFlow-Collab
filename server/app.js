@@ -6,6 +6,7 @@ import session from 'express-session'
 import passport from 'passport'
 import MongoStore from 'connect-mongo'
 import cors from 'cors'
+import helmet from 'helmet'
 
 import signRouter from './routes/sign.js'
 import globalRouter from './routes/global.js'
@@ -54,6 +55,8 @@ db.once('open', () => {
 });
 
 const app = express()
+
+app.use(helmet())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
