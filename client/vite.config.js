@@ -10,8 +10,8 @@ export default defineConfig({
     // ✅ 빌드 시 소스 맵을 GlitchTip으로 자동 업로드
     sentryVitePlugin({
       org: "prime",       // GlitchTip 조직 슬러그
-      project: "DevFlow-Fronted",   // 프로젝트 이름
-      authToken: process.env.SENTRY_AUT, // 1단계에서 만든 토큰
+      project: "devflow-frontend",   // 프로젝트 이름
+      authToken: process.env.SENTRY_AUTH_TOKEN, // 1단계에서 만든 토큰
       url: "https://app.glitchtip.com/"
     }),
     Sitemap({ hostname: 'https://dev-flow-collab.duckdns.org' }), // 실제 배포된 주소 입력
