@@ -11,7 +11,7 @@ export default defineConfig({
     sentryVitePlugin({
       org: "prime",       // GlitchTip 조직 슬러그
       project: "DevFlow-Fronted",   // 프로젝트 이름
-      authToken: process.env.GLITCHTIP_AUTH_TOKEN, // 1단계에서 만든 토큰
+      authToken: process.env.SENTRY_AUT, // 1단계에서 만든 토큰
       url: "https://app.glitchtip.com/"
     }),
     Sitemap({ hostname: 'https://dev-flow-collab.duckdns.org' }), // 실제 배포된 주소 입력
