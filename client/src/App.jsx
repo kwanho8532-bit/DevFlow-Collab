@@ -7,7 +7,7 @@ if (import.meta.env.PROD) {
 
 import CssBaseline from '@mui/material/CssBaseline';
 import LandingPage from './component/landing/LandingPage.jsx'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router';
 import Signup from './component/sign/Signup.jsx';
 import Signin from './component/sign/Signin.jsx';
 import ContextLayout from './component/wrap/ContextLayout.jsx'
@@ -69,6 +69,9 @@ function App() {
             <Spinner content='Loading' />
             <Routes>
               <Route element={<ContextLayout />}>
+                {/* ✅ 루트(/)로 접속하면 /landing으로 즉시 이동 */}
+                <Route path='/' element={<Navigate to='/landing' replace />} />
+
                 <Route element={<LandingPage />} path='/landing' />
                 <Route element={<Signin />} path='/signin' />
                 <Route element={<Signup />} path='/signup' />
