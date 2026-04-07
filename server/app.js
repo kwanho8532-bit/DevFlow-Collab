@@ -59,7 +59,7 @@ const app = express()
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            'default-src': ['self'],
+            'default-src': ["'self'"],
             // Cloudinary 이미지 호스트를 명시적으로 허용
             "img-src": ["'self'", "data:", "res.cloudinary.com"],
             // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
