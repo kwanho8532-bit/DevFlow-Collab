@@ -2,10 +2,15 @@ import { Grid } from "@mui/material";
 
 import Header from "./Header.jsx";
 import Kanban from "./Kanban.jsx";
+import { Helmet } from "react-helmet-async";
 
 export default function KanbanPage() {
     return (
         <>
+            <Helmet>
+
+            </Helmet>
+
             <Grid bgcolor='#064E3B' sx={{ height: '48px' }}>
                 <Header />
             </Grid>
