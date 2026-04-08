@@ -57,22 +57,20 @@ db.once('open', () => {
 
 const app = express()
 
-app.use(helmet())
-
-// app.use(helmet({
-//     contentSecurityPolicy: {
-//         useDefaults: true, // 기본 설정을 명시적으로 활성화
-//         directives: {
-//             "default-src": ["'self'"],
-//             // Cloudinary 이미지 호스트를 명시적으로 허용
-//             "img-src": ["'self'", "data:", "https://res.cloudinary.com"],
-//             // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
-//             "script-src": ["'self'"],
-//             "style-src": ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
-//             "connect-src": ["'self'", 'https://dev-flow-collab.duckdns.org'] // API 서버라면 connect-src도 중요함
-//         }
-//     }
-// }))
+app.use(helmet({
+    contentSecurityPolicy: {
+        useDefaults: true, // 기본 설정을 명시적으로 활성화
+        directives: {
+            "default-src": ["'self'"],
+            // Cloudinary 이미지 호스트를 명시적으로 허용
+            "img-src": ["'self'", "data:", "https://res.cloudinary.com"],
+            // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
+            "script-src": ["'self'"],
+            "style-src": ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
+            "connect-src": ["'self'", 'https://dev-flow-collab.duckdns.org'] // API 서버라면 connect-src도 중요함
+        }
+    }
+}))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
