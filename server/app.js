@@ -7,6 +7,7 @@ import passport from 'passport'
 import MongoStore from 'connect-mongo'
 import cors from 'cors'
 import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 
 import signRouter from './routes/sign.js'
 import globalRouter from './routes/global.js'
@@ -59,11 +60,12 @@ const app = express()
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            'default-src': ["'self'"],
+            defaultSrc: ["'self'"],
             // Cloudinary 이미지 호스트를 명시적으로 허용
-            "img-src": ["'self'", "data:", "res.cloudinary.com"],
+            imgSrc: ["'self'", "data:", "https://res.cloudinary.com"],
             // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
-            "script-src": ["'self'", "res.cloudinary.com"],
+            scriptSrc: ["'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
         }
     }
 }))
