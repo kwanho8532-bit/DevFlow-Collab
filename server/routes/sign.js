@@ -5,7 +5,7 @@ import upload from '../middleware/multer.js'
 // multer관련 기본 설정은 공부를 해야함 지금은 그냥 
 // const upload = multer({dest: 'upload/'})
 // 이것밖에 할 줄 모름
-import rateLimit, { ipKeyGenerator } from 'express-rate-limit'
+import rateLimit from 'express-rate-limit'
 
 const postLimiter = rateLimit({
     windowMs: 1000 * 60 * 5,

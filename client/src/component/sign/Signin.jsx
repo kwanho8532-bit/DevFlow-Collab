@@ -68,6 +68,7 @@ export default function Signin() {
                 state: { reason: 'SIGN_IN' }
             })
         } catch (err) {
+            console.log(err)
             setError('root', {
                 type: 'server',
                 message: err.response?.data.message
