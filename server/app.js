@@ -60,12 +60,12 @@ const app = express()
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'"],
+            "default-src": ["'self'"],
             // Cloudinary 이미지 호스트를 명시적으로 허용
-            imgSrc: ["'self'", "data:", "https://res.cloudinary.com"],
+            "img-src": ["'self'", "data:", "https://res.cloudinary.com"],
             // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
-            scriptSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
+            "script-src": ["'self'"],
+            "style-src": ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
         }
     }
 }))
