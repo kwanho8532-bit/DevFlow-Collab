@@ -10,8 +10,11 @@ import rateLimit, { ipKeyGenerator } from 'express-rate-limit'
 const postLimiter = rateLimit({
     windowMs: 1000 * 60 * 5,
     limit: 5,
+    // keyGenerator: (req, res) => {
+    //     return ipKeyGenerator(req, res)
+    // },
     keyGenerator: (req, res) => {
-        return ipKeyGenerator(req, res)
+        return res.body.email
     },
     handler: (req, res) => {
         res.status(429).json({
