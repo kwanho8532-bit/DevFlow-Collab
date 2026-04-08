@@ -10,6 +10,10 @@ import rateLimit from 'express-rate-limit'
 const postLimiter = rateLimit({
     windowMs: 1000 * 60 * 5,
     limit: 5,
+    keyGenerator: (req) => {
+        // 프록시가 넘겨준 헤더에서 첫 번째 IP를 가져오거나 없으면 기본 IP 사용
+        return req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
+    },
     handler: (req, res) => {
         res.status(429).json({
             message: '로그인 시도가 너무 많습니다. 5분 뒤에 다시 시도하세요.'
