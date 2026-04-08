@@ -59,6 +59,7 @@ const app = express()
 
 app.use(helmet({
     contentSecurityPolicy: {
+        useDefaults: true, // 기본 설정을 명시적으로 활성화
         directives: {
             "default-src": ["'self'"],
             // Cloudinary 이미지 호스트를 명시적으로 허용
@@ -66,6 +67,7 @@ app.use(helmet({
             // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
             "script-src": ["'self'"],
             "style-src": ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
+            "connect-src": ["'self'", ...allowedOrigins] // API 서버라면 connect-src도 중요함
         }
     }
 }))
