@@ -5,14 +5,13 @@ import upload from '../middleware/multer.js'
 // multer관련 기본 설정은 공부를 해야함 지금은 그냥 
 // const upload = multer({dest: 'upload/'})
 // 이것밖에 할 줄 모름
-import rateLimit from 'express-rate-limit'
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit'
 
 const postLimiter = rateLimit({
     windowMs: 1000 * 60 * 5,
     limit: 5,
-    keyGenerator: (req) => {
-        // 프록시가 넘겨준 헤더에서 첫 번째 IP를 가져오거나 없으면 기본 IP 사용
-        return req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
+    keyGenerator: (req, res) => {
+        return ipKeyGenerator(req, res)
     },
     handler: (req, res) => {
         res.status(429).json({
