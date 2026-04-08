@@ -11,7 +11,7 @@
             "headers": [
                 {
                     "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://dev-flow-collab.duckdns.org; https://www.google-analytics.com https://region1.google-analytics.com;"
+                    "value": "default-src 'self'; img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://app.glitchtip.com https://devflow-collab.onrender.com;"
                 },
                 {
                     "key": "X-Content-Type-Options",
