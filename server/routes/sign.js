@@ -11,8 +11,7 @@ const postLimiter = rateLimit({
     windowMs: 1000 * 60 * 5,
     limit: 5,
     handler: (req, res) => {
-        console.log('handler')
-        return res.status(429).json({
+        res.status(429).json({
             message: '로그인 시도가 너무 많습니다. 5분 뒤에 다시 시도하세요.'
         })
     }

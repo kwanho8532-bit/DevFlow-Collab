@@ -46,6 +46,7 @@ export const signup = catchAsync(async function (req, res, next) {
 // task 라우터로 분리하기 (router, controller, service)
 // cloudinary와 multer(memoryStorage) 다시 복습하기
 export const signin = catchAsync(async function (req, res, next) {
+    console.log("접속 IP:", req.ip);
     passport.authenticate('local', (err, user, info) => {
         if (err) return next(err)
 
