@@ -14,7 +14,7 @@ const postLimiter = rateLimit({
     //     return ipKeyGenerator(req, res)
     // },
     keyGenerator: (req, res) => {
-        return res.body.email
+        return req.body.email
     },
     handler: (req, res) => {
         res.status(429).json({
