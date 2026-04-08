@@ -7,7 +7,6 @@ import passport from 'passport'
 import MongoStore from 'connect-mongo'
 import cors from 'cors'
 import helmet from 'helmet'
-import rateLimit from 'express-rate-limit'
 
 import signRouter from './routes/sign.js'
 import globalRouter from './routes/global.js'
@@ -64,10 +63,14 @@ app.use(helmet({
             "default-src": ["'self'"],
             // Cloudinary 이미지 호스트를 명시적으로 허용
             "img-src": ["'self'", "data:", "https://res.cloudinary.com"],
-            // 만약 Cloudinary에서 제공하는 JS 라이브러리를 쓴다면 추가
+            // API 서버는 보통 스크립트를 직접 실행하지 않으므로 엄격하게 제한
             "script-src": ["'self'"],
             "style-src": ["'self'", "'unsafe-inline'"], // MUI 쓰면 거의 필요
-            "connect-src": ["'self'", 'https://dev-flow-collab.duckdns.org'] // API 서버라면 connect-src도 중요함
+            "connect-src": ["'self'",
+                "https://dev-flow-collab.duckdns.org",  // 프론트엔드 주소 (필수)
+                "https://app.glitchtip.com",            // 에러 트래킹
+                "https://www.google-analytics.com"      // 애널리틱스
+            ]
         }
     }
 }))
