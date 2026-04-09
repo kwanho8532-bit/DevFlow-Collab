@@ -89,6 +89,7 @@ export default function Signin() {
         }, 1000)
     }
     checkExistingLock()
+    console.log(loginBtn)
 
     const handleRegistration = async (value) => {
         try {
