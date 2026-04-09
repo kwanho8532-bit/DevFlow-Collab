@@ -21,6 +21,8 @@ export default function Signin() {
     const changeAuth = useAuthStore(state => state.changeAuth)
     const { state } = useLocation()
 
+    const loginBtn = document.getElementById('login-btn')
+
     const {
         register,
         handleSubmit,
@@ -58,6 +60,35 @@ export default function Signin() {
 
     const navigate = useNavigate()
 
+    const checkExistingLock = () => {
+        const lockUntil = localStorage.getItem('login_lock_until')
+        if (lockUntil) {
+            const remainingTime = parseInt(lockUntil) - Date.now()
+
+            if (remainingTime > 0) {
+                handleButtonLock(Math.ceil(remainingTime))
+            } else {
+                localStorage.removeItem('login_lock_until')
+            }
+        }
+    }
+
+    const handleButtonLock = (sec) => {
+        loginBtn.disabled = true
+        const timeLeft = sec
+
+        const timer = setInterval(() => {
+            timeLeft--
+
+            if (timeLeft <= 0) {
+                clearInterval(timer)
+                loginBtn.disabled = false
+                loginBtn.innerText = 'Sign in'
+                localStorage.removeItem('login_lock_until')
+            }
+        }, 1000)
+    }
+
 
     const handleRegistration = async (value) => {
         try {
@@ -68,7 +99,12 @@ export default function Signin() {
                 state: { reason: 'SIGN_IN' }
             })
         } catch (err) {
-            console.log(err)
+            if (err.response.status === 429) {
+                const retryAfter = err.response.headers['retry-after'] || 300
+                const lockUntil = Date.now() + (parseInt(retryAfter) * 1000)
+                localStorage.setItem('login_lock_until', lockUntil)
+                handleButtonLock(retryAfter)
+            }
             setError('root', {
                 type: 'server',
                 message: err.response?.data.message
@@ -163,6 +199,7 @@ export default function Signin() {
                                 helperText={errors?.password?.message || ' '}
                             />
                             <Button
+                                id="login-btn"
                                 disabled={!isValid}
                                 type="submit"
                                 size="large"
