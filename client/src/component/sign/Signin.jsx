@@ -75,7 +75,7 @@ export default function Signin() {
 
     const handleButtonLock = (sec) => {
         loginBtn.disabled = true
-        const timeLeft = sec
+        let timeLeft = sec
 
         const timer = setInterval(() => {
             timeLeft--
@@ -88,7 +88,7 @@ export default function Signin() {
             }
         }, 1000)
     }
-
+    checkExistingLock()
 
     const handleRegistration = async (value) => {
         try {
