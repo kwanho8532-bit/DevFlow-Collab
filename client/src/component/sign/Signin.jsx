@@ -15,13 +15,17 @@ import { useAuthStore } from "../../store/useAuthStore.js";
 import { useEffect } from "react";
 import SigninAlert from "./SigninAlert.jsx";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import { useCallback } from "react";
 
 
 export default function Signin() {
     const changeAuth = useAuthStore(state => state.changeAuth)
     const { state } = useLocation()
+    const [searchParams] = useSearchParams()
 
-    const loginBtn = document.getElementById('login-btn')
+    const [isLocked, setIsLocked] = useState(false)
+    const [lockText, setLockText] = useState('')
 
     const {
         register,
@@ -38,7 +42,6 @@ export default function Signin() {
         resetOptions: { keepErrors: true }
     })
 
-    const [searchParams] = useSearchParams()
 
     const errorReason = searchParams.get('error')
 
@@ -60,36 +63,38 @@ export default function Signin() {
 
     const navigate = useNavigate()
 
-    const checkExistingLock = () => {
-        const lockUntil = localStorage.getItem('login_lock_until')
-        if (lockUntil) {
-            const remainingTime = parseInt(lockUntil) - Date.now()
-
-            if (remainingTime > 0) {
-                handleButtonLock(Math.ceil(remainingTime))
-            } else {
-                localStorage.removeItem('login_lock_until')
-            }
-        }
-    }
-
-    const handleButtonLock = (sec) => {
-        loginBtn.disabled = true
+    const handleButtonLock = useCallback((sec) => {
+        setIsLocked(true)
         let timeLeft = sec
 
         const timer = setInterval(() => {
             timeLeft--
-            loginBtn.innerText = `${timeLeft}초 후에 다시 시도하십시오`
+            setLockText(`${timeLeft}초 후에 다시 시도하십시오`)
 
             if (timeLeft <= 0) {
                 clearInterval(timer)
-                loginBtn.disabled = false
-                loginBtn.innerText = 'Sign in'
+                setIsLocked(false)
+                setLockText('Sign in')
                 localStorage.removeItem('login_lock_until')
             }
         }, 1000)
-    }
-    checkExistingLock()
+
+        return () => clearInterval(timer)
+    }, [])
+
+    useEffect(() => {
+        const lockUntil = localStorage.getItem('login_lock_until')
+
+        if (lockUntil) {
+            const remainingTime = Math.ceil((parseInt(lockUntil) - Date.now()) / 1000);
+
+            if (remainingTime > 0) {
+                handleButtonLock(remainingTime)
+            } else {
+                localStorage.removeItem('login_lock_until')
+            }
+        }
+    }, [handleButtonLock])
 
     const handleRegistration = async (value) => {
         try {
@@ -101,7 +106,6 @@ export default function Signin() {
             })
         } catch (err) {
             if (err.response.status === 429) {
-                console.log(err.response.headers)
                 const retryAfter = err.response.headers['retry-after'] || 300
                 const lockUntil = Date.now() + (parseInt(retryAfter) * 1000)
                 localStorage.setItem('login_lock_until', lockUntil)
