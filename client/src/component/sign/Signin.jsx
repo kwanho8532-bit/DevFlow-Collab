@@ -79,6 +79,7 @@ export default function Signin() {
 
         const timer = setInterval(() => {
             timeLeft--
+            loginBtn.innerText = `${timeLeft}초 후에 다시 시도하십시오`
 
             if (timeLeft <= 0) {
                 clearInterval(timer)
@@ -89,7 +90,6 @@ export default function Signin() {
         }, 1000)
     }
     checkExistingLock()
-    console.log(loginBtn)
 
     const handleRegistration = async (value) => {
         try {
@@ -101,6 +101,7 @@ export default function Signin() {
             })
         } catch (err) {
             if (err.response.status === 429) {
+                console.log(err.response.headers)
                 const retryAfter = err.response.headers['retry-after'] || 300
                 const lockUntil = Date.now() + (parseInt(retryAfter) * 1000)
                 localStorage.setItem('login_lock_until', lockUntil)
