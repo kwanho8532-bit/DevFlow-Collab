@@ -25,7 +25,7 @@ export default function Signin() {
     const [searchParams] = useSearchParams()
 
     const [isLocked, setIsLocked] = useState(false)
-    const [lockText, setLockText] = useState('')
+    const [lockText, setLockText] = useState('Sign in')
 
     const {
         register,
@@ -206,7 +206,7 @@ export default function Signin() {
                             />
                             <Button
                                 id="login-btn"
-                                disabled={!isValid}
+                                disabled={isLocked || !isValid}
                                 type="submit"
                                 size="large"
                                 sx={{
@@ -219,7 +219,7 @@ export default function Signin() {
                                     }
                                 }}
                             >
-                                Sign in
+                                {lockText}
                             </Button>
                         </Stack>
 
