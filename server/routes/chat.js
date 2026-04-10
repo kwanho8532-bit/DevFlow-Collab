@@ -1,6 +1,6 @@
 import express from 'express'
 import * as chatController from '../controllers/chat.js'
-import doubleCsrfProtection from '../config/csrf.js'
+import { doubleCsrfProtection } from '../config/csrf.js'
 
 const router = express.Router()
 
