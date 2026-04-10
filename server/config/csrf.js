@@ -1,5 +1,6 @@
 import { doubleCsrf } from "csrf-csrf";
 
+console.log("Checking doubleCsrf initialization...");
 const {
     generateCsrfToken,
     invalidCsrfTokenError,
@@ -15,4 +16,9 @@ const {
     getCsrfTokenFromRequest: (req) => req.headers['x-csrf-token']
 })
 
-export default { generateCsrfToken, invalidCsrfTokenError, doubleCsrfProtection }
+// 명시적으로 값이 존재하는지 확인
+if (!generateCsrfToken) {
+    console.error("FAILED: generateCsrfToken is undefined!");
+}
+
+export { generateCsrfToken, invalidCsrfTokenError, doubleCsrfProtection }
