@@ -18,7 +18,7 @@ export default defineConfig({
     Sitemap({
       hostname: 'https://dev-flow-collab.duckdns.org',
       // outDir: resolve(__dirname, 'dist'),
-      // generateRobotsTxt: true 
+      generateRobotsTxt: false
     }), // 실제 배포된 주소 입력
   ],
   build: {
