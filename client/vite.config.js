@@ -14,7 +14,11 @@ export default defineConfig({
       authToken: process.env.SENTRY_AUTH_TOKEN, // 1단계에서 만든 토큰
       url: "https://app.glitchtip.com/"
     }),
-    Sitemap({ hostname: 'https://dev-flow-collab.duckdns.org' }), // 실제 배포된 주소 입력
+    Sitemap({
+      hostname: 'https://dev-flow-collab.duckdns.org',
+      outDir: resolve(__dirname, 'dist')
+    }), // 실제 배포된 주소 입력
+
   ],
   build: {
     sourcemap: true, // ✅ 필수: 빌드 시 .map 파일을 생성하도록 설정
