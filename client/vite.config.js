@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import Sitemap from 'vite-plugin-sitemap'
+import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
