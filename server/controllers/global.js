@@ -54,9 +54,9 @@ export const csrfToken = catchAsync(async function (req, res, next) {
             message: '로그인이 필요합니다.'
         })
     }
-
+    console.log('csrfToken router in!!!!!')
     const csrfToken = generateCsrfToken(req, res)
-
+    console.log(csrfToken)
     res.status(200).json(csrfToken)
 
 })
