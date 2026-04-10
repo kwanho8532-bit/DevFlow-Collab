@@ -7,6 +7,9 @@ import passport from 'passport'
 import MongoStore from 'connect-mongo'
 import cors from 'cors'
 import helmet from 'helmet'
+import mongoSanitize from 'express-mongo-sanitize'
+import hpp from 'hpp'
+import cookieParser from 'cookie-parser'
 
 import signRouter from './routes/sign.js'
 import globalRouter from './routes/global.js'
@@ -18,6 +21,7 @@ import inviteRouter from './routes/invite.js'
 import chatRouter from './routes/chat.js'
 
 import configurePassport from './config/passport.js'
+import { invalidCsrfTokenError } from './config/csrf.js'
 import * as Sentry from '@sentry/node'; // ✅ ESM 방식으로 불러오기
 
 // 1. Sentry 초기화 (모든 코드의 최상단)
@@ -76,12 +80,16 @@ app.use(helmet({
 }))
 
 app.use(express.json())
+app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.urlencoded({ extended: true }))
+
+app.use(hpp())
+app.use(mongoSanitize()) // 반드시 app.use(express.json()) 뒤에 작성해야함
 
 app.set('trust proxy', 1)
 
 const sessionConfig = {
-    name: 'DevFlow.sid',
+    name: '__Secure-DevFlow.sid',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -110,7 +118,7 @@ const sessionConfig = {
 
         // 프로덕트 환경
         httpOnly: true,
-        sameSite: 'none', // 서로 다른 도메인(Vercel <-> Render) 간 쿠키 전송 허용
+        sameSite: 'none', // 서로 다른 도메인(Vercel <-> Render) 간 쿠키 전송 허용 (__Host- 접두사 사용 안됨 -> __Secure-사용하기)
         secure: true,
         maxAge: 1000 * 60 * 60 * 3
     }
@@ -166,6 +174,14 @@ app.use('/api/chat', chatRouter)
 Sentry.setupExpressErrorHandler(app);
 
 app.use((err, req, res, next) => {
+    // 1. CSRF 에러인지 가장 먼저 확인
+    if (err === invalidCsrfTokenError) {
+        return res.status(403).json({
+            message: "보안 토큰이 유효하지 않습니다. 페이지를 새로고침 해주세요.",
+            code: "CSRF_ERROR" // 프론트엔드 식별용 코드 추가 권장
+        });
+    }
+
     // console.log(err, '147')
     // console.log(err.message, 'message')
     console.log(err.stack, 'stack')

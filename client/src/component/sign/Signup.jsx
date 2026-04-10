@@ -22,11 +22,13 @@ import { useAuthStore } from "../../store/useAuthStore.js";
 import { useLoadingStore } from "../../store/useLoadingStore.js";
 import { Helmet } from "react-helmet-async";
 import ReactGA from 'react-ga4'
+import { useEffect } from "react";
 
 // 로그아웃까지 구현 했으니까 로그인 구현해야됨
 // 이후에 landing 컨텐츠 더 만들고 
 
 export default function Signup() {
+    const initCsrf = useAuthStore(state => state.initCsrf)
     const changeAuth = useAuthStore(state => state.changeAuth)
     const loading = useLoadingStore(state => state.isLoading)
     const navigate = useNavigate()
@@ -46,6 +48,14 @@ export default function Signup() {
         resolver: zodResolver(signupSchema),
         resetOptions: { keepErrors: true }
     })
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
+
 
     const handleRegistration = async (data) => {
         const formData = new FormData()

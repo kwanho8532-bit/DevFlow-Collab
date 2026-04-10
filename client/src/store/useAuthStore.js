@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import api from '../component/api/axios.js'
+import { csrfToken } from '../../../server/controllers/global.js'
 
 // 내일 와서 useAuthStore를 구성하는
 // zustand, axios.interceptors, subscribeWithSelector, subscribe 등등 다시 연습하기
@@ -9,6 +10,7 @@ import api from '../component/api/axios.js'
 export const useAuthStore = create(
     persist((set) => ({
         auth: null,
+        csrfToken: null,
         getAuth: async () => {
             try {
                 const { data } = await api.get('/me/auth') // withCredentials: true는 기본값으로 설정함 axios.js에서 따라서 생략 가능
@@ -33,7 +35,31 @@ export const useAuthStore = create(
             }
         },
         changeAuth: (newAuth) => set({ auth: newAuth }),
-        logout: () => set({ auth: null })
+        login: async (value) => {
+            try {
+                const { data } = await api.post('/signin', value)
+                set({ csrfToken: data.csrfToken })
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        logout: async () => {
+            try {
+                const { data } = await api.post('/signout')
+                set({ auth: data.user || null })
+            } catch (err) {
+                console.log(err)
+            }
+            set({ auth: null })
+        },
+        initCsrf: async () => {
+            try {
+                const { data } = await api.get('/csrf-token')
+                set({ csrfToken: data })
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }),
         {
             name: 'devFlow-auth-storage',

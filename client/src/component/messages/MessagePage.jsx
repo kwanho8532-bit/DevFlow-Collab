@@ -11,13 +11,22 @@ import { useNavigate } from 'react-router-dom';
 import { useChatStore } from '../../store/useChatStore.js';
 import MessageList from './MessageList.jsx';
 import MessageChat from './MessageChat.jsx';
+import { useAuthStore } from '../../store/useAuthStore.js';
 
 export default function MessagePage() {
     const [userList, setUserList] = useState(null)
 
     const getChatRooms = useChatStore(state => state.getChatRooms)
+    const initCsrf = useAuthStore(state => state.initCsrf)
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
 
     useEffect(() => {
         async function getChats() {

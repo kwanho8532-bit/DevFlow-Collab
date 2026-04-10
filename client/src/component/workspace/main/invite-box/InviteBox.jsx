@@ -12,12 +12,21 @@ import { useInviteStore } from '../../../../store/useInviteStore.js';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Invite from './Invite.jsx';
+import { useAuthStore } from '../../../../store/useAuthStore.js';
 
 export default function InviteInbox() {
     const invites = useInviteStore(state => state.invites)
     const getPendingInvites = useInviteStore(state => state.getPendingInvites)
+    const initCsrf = useAuthStore(state => state.initCsrf)
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
 
     useEffect(() => {
         const getInviteData = async () => {

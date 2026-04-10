@@ -1,26 +1,27 @@
 import express from 'express'
 import * as projectController from '../controllers/project.js'
+import { doubleCsrfProtection } from '../config/csrf.js'
 
 const router = express.Router()
 
-router.post('/', projectController.newProjectAndProjectMember)
+router.post('/', doubleCsrfProtection, projectController.newProjectAndProjectMember)
 
 router.get('/archived', projectController.getArchived)
 
 router.route('/:projectId')
     .get(projectController.projectDetail)
-    .put(projectController.editProject)
-    .delete(projectController.deleteProject)
+    .put(doubleCsrfProtection, projectController.editProject)
+    .delete(doubleCsrfProtection, projectController.deleteProject)
 
-router.patch('/:projectId/status', projectController.updateStatus)
+router.patch('/:projectId/status', doubleCsrfProtection, projectController.updateStatus)
 
-router.patch('/:projectId/archive', projectController.archiving)
+router.patch('/:projectId/archive', doubleCsrfProtection, projectController.archiving)
 
-router.patch('/:projectId/unarchive', projectController.unarchiving)
+router.patch('/:projectId/unarchive', doubleCsrfProtection, projectController.unarchiving)
 
 router.route('/workspace/:workspaceId')
     .get(projectController.getProjectByWorkspace)
-    .post(projectController.createProjectForWorkspace)
+    .post(doubleCsrfProtection, projectController.createProjectForWorkspace)
 
 export default router
 

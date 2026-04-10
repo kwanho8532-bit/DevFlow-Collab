@@ -6,13 +6,14 @@ import upload from '../middleware/multer.js'
 // const upload = multer({dest: 'upload/'})
 // 이것밖에 할 줄 모름
 import { postLimiter } from '../middleware/rateLimit.js'
+import { doubleCsrfProtection } from '../config/csrf.js'
 
 const router = express.Router()
 
-router.post('/signup', upload.single('profileImg'), signController.signup)
+router.post('/signup', doubleCsrfProtection, upload.single('profileImg'), signController.signup)
 
-router.post('/signin', postLimiter, signController.signin)
+router.post('/signin', postLimiter, doubleCsrfProtection, signController.signin)
 
-router.post('/signout', signController.signout)
+router.post('/signout', doubleCsrfProtection, signController.signout)
 
 export default router

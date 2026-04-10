@@ -20,7 +20,9 @@ import { useCallback } from "react";
 
 
 export default function Signin() {
+    const login = useAuthStore(state => state.login)
     const changeAuth = useAuthStore(state => state.changeAuth)
+    const initCsrf = useAuthStore(state => state.initCsrf)
     const { state } = useLocation()
     const [searchParams] = useSearchParams()
 
@@ -42,6 +44,12 @@ export default function Signin() {
         resetOptions: { keepErrors: true }
     })
 
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
 
     const errorReason = searchParams.get('error')
 
@@ -98,7 +106,7 @@ export default function Signin() {
 
     const handleRegistration = async (value) => {
         try {
-            const { data } = await api.post('/signin', value)
+            await login(value)
             changeAuth(data.user)
             navigate('/hub', {
                 replace: true,

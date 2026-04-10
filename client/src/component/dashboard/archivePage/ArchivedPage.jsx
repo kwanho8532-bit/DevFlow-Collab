@@ -1,7 +1,18 @@
 import { Grid } from "@mui/material";
 import Archvied from "./Archived.jsx";
+import { useAuthStore } from "../../../store/useAuthStore.js";
+import { useEffect } from "react";
 
 export default function ArchivedPage() {
+    const initCsrf = useAuthStore(state => state.initCsrf)
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
+
     return (
 
         <Grid sx={{

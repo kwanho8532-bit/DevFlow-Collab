@@ -16,6 +16,7 @@ import { useTaskStore } from '../../../store/useTaskStore.js';
 import DeadlineOverlay from './overlay/DeadlineOverlay.jsx';
 import ArchivedOverlay from './overlay/ArchivedOverlay.jsx';
 import ProjectDeleteButton from './body/ProjectDeleteButton.jsx';
+import { useAuthStore } from '../../../store/useAuthStore.js';
 
 
 export default function ProjectDetail() {
@@ -29,7 +30,14 @@ export default function ProjectDetail() {
     })
 
     const getTasks = useTaskStore(state => state.getTasks)
+    const initCsrf = useAuthStore(state => state.initCsrf)
 
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
 
     useEffect(() => {
         getSelectedProject(id)

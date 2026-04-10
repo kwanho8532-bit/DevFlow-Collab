@@ -2,6 +2,7 @@ import passport from "passport"
 import * as signService from "../services/sign.js"
 // ../services/sign.js에서 export로 내보낸 모든(*)것들을 다 가져오는데
 // 별칭(as)을 signService로 설정한다는 의미이다.
+import { generateCsrfToken } from '../config/csrf.js'
 
 import catchAsync from "../utils/catchAsync.js"
 
@@ -60,10 +61,14 @@ export const signin = catchAsync(async function (req, res, next) {
         req.login(user, (err) => {
             if (err) next(err)
 
+            // 인증 성공 시 토큰 생성 (쿠키는 자동 발급)
+            const csrfToken = generateCsrfToken(req, res)
+
             return res.status(200).json({
                 user,
                 message: '로그인 성공',
-                action: 'REDIRECT'
+                action: 'REDIRECT',
+                csrfToken
             })
         })
     })(req, res, next)
@@ -75,22 +80,33 @@ export const signout = catchAsync(async function (req, res, next) {
             user: null,
             action: 'REDIRECT'
         })
-    } else {
-        req.logout(err => {
+    }
+    req.logout(err => {
+        if (err) return next(err)
+
+        // 1. 세션 파괴 (로그인 정보 삭제)
+        req.session.destroy(err => {
             if (err) return next(err)
-            req.session.destroy(err => {
-                if (err) return next(err)
 
-                res.clearCookie('DevFlow.sid', {
-                    path: '/',
-                    httpOnly: false
-                })
+            // 2. 세션 쿠키 삭제 (Express 기본 세션 사용 시)
+            res.clearCookie('DevFlow.sid', {
+                path: '/',
+                httpOnly: true
+            })
 
-                return res.status(200).json({
-                    user: null,
-                    action: 'REDIRECT'
-                })
+            // 3. CSRF 쿠키 삭제 (중요!)
+            // config에서 설정한 cookieName과 동일한 이름을 사용해야 합니다.
+            res.clearCookie('__Secure-x-csrf-token', {
+                path: '/',
+                httpOnly: true,
+                secure: true,
+                sameSite: 'none',
+            })
+
+            return res.status(200).json({
+                user: null,
+                action: 'REDIRECT'
             })
         })
-    }
+    })
 })

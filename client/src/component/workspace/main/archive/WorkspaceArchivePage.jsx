@@ -1,8 +1,18 @@
 import { Box } from "@mui/material";
 import WorkspaceArchive from "./WorkspaceArchive.jsx";
+import { useAuthStore } from "../../../../store/useAuthStore.js";
+import { useEffect } from "react";
 
 
 export default function WorkspaceArchivePage() {
+    const initCsrf = useAuthStore(state => state.initCsrf)
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
     return (
         <Box sx={{
             flex: 1,

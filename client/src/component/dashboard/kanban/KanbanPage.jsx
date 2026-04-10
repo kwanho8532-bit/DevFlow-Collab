@@ -3,8 +3,18 @@ import { Grid } from "@mui/material";
 import Header from "./Header.jsx";
 import Kanban from "./Kanban.jsx";
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import { useAuthStore } from "../../../store/useAuthStore.js";
 
 export default function KanbanPage() {
+    const initCsrf = useAuthStore(state => state.initCsrf)
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
     return (
         <>
             <Helmet>

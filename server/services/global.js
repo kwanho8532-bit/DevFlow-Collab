@@ -1,7 +1,6 @@
 import projectMember from "../model/projectMember.js"
 import User from "../model/user.js"
 
-
 export const findCurrUser = async function (targetId) {
     const currUser = await User.findById(targetId)
     return currUser

@@ -6,6 +6,7 @@ import MiddleNav from "./middleNav/MiddleNav.jsx";
 import { Outlet, useParams } from "react-router-dom";
 import { useWorkspaceStore } from "../../store/useWorkspaceStore.js";
 import { useProjectStore } from "../../store/useProjectStore.js";
+import { useAuthStore } from "../../store/useAuthStore.js";
 
 
 export default function WorkspacePage() {
@@ -13,6 +14,14 @@ export default function WorkspacePage() {
     const [isNavOpen, setIsNavOpen] = useState(true)
     const getSelectedWorkspace = useWorkspaceStore(state => state.getSelectedWorkspace)
     const getProjectsInWorkspace = useProjectStore(state => state.getProjectsInWorkspace)
+    const initCsrf = useAuthStore(state => state.initCsrf)
+
+    useEffect(() => {
+        async function refresh() {
+            await initCsrf()
+        }
+        refresh()
+    }, [initCsrf])
 
     useEffect(() => {
         getSelectedWorkspace(id)

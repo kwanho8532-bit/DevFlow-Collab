@@ -9,6 +9,7 @@ router.get('/auth/status', globalController.checkAuth)
 
 router.get('/currProject', globalController.currProject)
 
+router.get('/csrf-token', globalController.csrfToken)
 
 export default router
 

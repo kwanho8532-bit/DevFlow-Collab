@@ -14,6 +14,19 @@ api.interceptors.request.use(
         if (!skipLoading) {
             useLoadingStore.getState().startLoading()
         }
+
+        const token = useAuthStore.getState().csrfToken;
+
+        // 데이터 변경 가능성이 있는 메서드들
+        const protectedMethods = ['post', 'put', 'patch', 'delete'];
+
+        // 현재 요청 메서드가 보호 대상이고 토큰이 있다면 헤더 추가
+        if (protectedMethods.includes(config.method?.toLowerCase()) && token) {
+            config.headers['x-csrf-token'] = token;
+            // 여기서 설정한 헤더의 이름이
+            // doubleCsrf()에서의 getCsrfTokenFromRequest: (req) => req.headers["헤더이름"]의 헤더이름과 일치해야함
+        }
+
         return config
     },
     (error) => {
