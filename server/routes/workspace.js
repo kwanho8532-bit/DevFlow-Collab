@@ -1,6 +1,6 @@
 import express from 'express'
 import * as workspaceController from '../controllers/workspace.js'
-import doubleCsrfProtection from '../config/csrf.js'
+import { doubleCsrfProtection } from '../config/csrf.js'
 
 const router = express.Router()
 
