@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import api from '../component/api/axios.js'
-import { csrfToken } from '../../../server/controllers/global.js'
 
 // 내일 와서 useAuthStore를 구성하는
 // zustand, axios.interceptors, subscribeWithSelector, subscribe 등등 다시 연습하기
