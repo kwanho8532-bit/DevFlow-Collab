@@ -15,4 +15,4 @@ const {
     getCsrfTokenFromRequest: (req) => req.headers['x-csrf-token']
 })
 
-export { generateCsrfToken, invalidCsrfTokenError, doubleCsrfProtection }
+export default { generateCsrfToken, invalidCsrfTokenError, doubleCsrfProtection }
