@@ -131,7 +131,10 @@ const allowedOrigins = [
 
 app.use(cors({
     origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+    credentials: true,
+    // 3. CSRF 토큰을 헤더로 주고받는다면 해당 헤더 명시
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
 }))
 
