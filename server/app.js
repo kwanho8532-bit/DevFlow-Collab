@@ -60,6 +60,20 @@ db.once('open', () => {
 
 const app = express()
 
+
+const allowedOrigins = [
+    'https://dev-flow-collab.duckdns.org', // 배포 시 vercel 주소
+    'http://localhost:5173' // 로컬 테스트용
+]
+
+app.use(cors({
+    origin: allowedOrigins,
+    // 3. CSRF 토큰을 헤더로 주고받는다면 해당 헤더 명시
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
+}))
+
 app.use(helmet({
     contentSecurityPolicy: {
         useDefaults: true, // 기본 설정을 명시적으로 활성화
@@ -123,19 +137,6 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 3
     }
 }
-
-const allowedOrigins = [
-    'https://dev-flow-collab.duckdns.org', // 배포 시 vercel 주소
-    'http://localhost:5173' // 로컬 테스트용
-]
-
-app.use(cors({
-    origin: allowedOrigins,
-    // 3. CSRF 토큰을 헤더로 주고받는다면 해당 헤더 명시
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
-    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true
-}))
 
 app.use(session(sessionConfig))
 
