@@ -54,6 +54,8 @@ export const csrfToken = catchAsync(async function (req, res, next) {
             message: '로그인이 필요합니다.'
         })
     }
+    // 이거 출력조차 안됨 -> TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    // 이 에러 먼저 해결하고 접속하면 임시 토큰 발급하는 로직 짜고 배포하면 진짜 끝!
     console.log('csrfToken router in!!!!!')
     const csrfToken = generateCsrfToken(req, res)
     console.log(csrfToken)
