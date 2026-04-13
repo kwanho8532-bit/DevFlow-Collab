@@ -16,6 +16,7 @@ api.interceptors.request.use(
         }
 
         const token = useAuthStore.getState().csrfToken;
+        console.log(token ? 'true' : 'false')
 
         // 데이터 변경 가능성이 있는 메서드들
         const protectedMethods = ['post', 'put', 'patch', 'delete'];
