@@ -38,6 +38,7 @@ export const useAuthStore = create(
             try {
                 const { data } = await api.post('/signin', value)
                 set({ csrfToken: data.csrfToken })
+                console.log(data)
                 return data.user
             } catch (err) {
                 console.log(err)
