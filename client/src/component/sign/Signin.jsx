@@ -45,6 +45,7 @@ export default function Signin() {
     })
 
     useEffect(() => {
+        console.log('refresh')
         async function refresh() {
             await initCsrf()
         }
