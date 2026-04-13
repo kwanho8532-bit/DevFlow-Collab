@@ -7,6 +7,7 @@ const {
 } = doubleCsrf({
     getSessionIdentifier: (req) => req.sessionID,
     getSecret: () => process.env.CSRF_TOKEN_SECRET,
+    ignoredMethods: ["GET", "HEAD", "OPTIONS"], // GET은 검사하지 않도록 명시
     cookieName: '__Secure-x-csrf-token',
     cookieOptions: {
         httpOnly: true,
