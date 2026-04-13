@@ -54,9 +54,7 @@ export const useAuthStore = create(
         },
         initCsrf: async () => {
             try {
-                console.log('before')
                 const { data } = await api.get('/me/csrf-token')
-                console.log('after')
                 set({ csrfToken: data })
             } catch (err) {
                 console.log(err.response)
