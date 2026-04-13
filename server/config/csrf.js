@@ -5,6 +5,7 @@ const {
     invalidCsrfTokenError,
     doubleCsrfProtection
 } = doubleCsrf({
+    getSessionIdentifier: (req) => req.sessionID,
     getSecret: () => process.env.CSRF_TOKEN_SECRET,
     cookieName: '__Secure-x-csrf-token',
     cookieOptions: {
