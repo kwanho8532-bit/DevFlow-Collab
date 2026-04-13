@@ -98,7 +98,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
-app.use(hpp())
+// app.use(hpp())
 app.use(mongoSanitize()) // 반드시 app.use(express.json()) 뒤에 작성해야함
 
 app.set('trust proxy', 1)
