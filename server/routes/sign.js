@@ -10,6 +10,11 @@ import { doubleCsrfProtection } from '../config/csrf.js'
 
 const router = express.Router()
 
+router.use((req, res, next) => {
+    console.log('🔥 signRouter hit:', req.method, req.url);
+    next();
+});
+
 router.post('/signup', doubleCsrfProtection, upload.single('profileImg'), signController.signup)
 
 router.post('/signin', postLimiter, doubleCsrfProtection, signController.signin)
