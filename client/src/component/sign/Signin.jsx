@@ -114,7 +114,7 @@ export default function Signin() {
                 state: { reason: 'SIGN_IN' }
             })
         } catch (err) {
-            console.log(err.response)
+            console.log(err)
             if (err.response.status === 429) {
                 const retryAfter = err.response.headers['retry-after'] || 300
                 const lockUntil = Date.now() + (parseInt(retryAfter) * 1000)
