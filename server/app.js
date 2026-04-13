@@ -159,12 +159,6 @@ app.use(passport.session())
 
 configurePassport(passport)
 
-app.use((req, res, next) => {
-    console.log("Direct Property:", Object.getOwnPropertyDescriptor(req, 'query'));
-    console.log(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(req), 'query'));
-    next()
-})
-
 app.use('/api', signRouter)
 
 app.use('/api/me', globalRouter)
