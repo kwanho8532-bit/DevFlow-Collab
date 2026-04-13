@@ -177,12 +177,9 @@ app.use('/api/chat', chatRouter)
 // 반드시 모든 라우터보다 '뒤에' 위치해야 합니다.
 Sentry.setupExpressErrorHandler(app);
 
-app.use((req, res, next) => {
-    console.log('🔥', req.method, req.url);
-    next();
-});
-
 app.use((err, req, res, next) => {
+    console.log('🔥', req.method, req.url);
+
     // 1. CSRF 에러인지 가장 먼저 확인
     if (err === invalidCsrfTokenError) {
         return res.status(403).json({
