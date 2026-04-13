@@ -1,6 +1,5 @@
 import { doubleCsrf } from "csrf-csrf";
 
-console.log("Checking doubleCsrf initialization...");
 const {
     generateCsrfToken,
     invalidCsrfTokenError,

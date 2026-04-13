@@ -7,6 +7,9 @@ export const postLimiter = rateLimit({
     keyGenerator: (req, res) => {
         return req.body.email || req.ip // body가 없는 요청의 경우에는 ip로 판단
     },
+    validate: {
+        default: false
+    },
     handler: (req, res, next, options) => {
         // 1. 헤더에 차단 기간(초) 설정 (5분 = 300초)
         const retryAfterSeconds = Math.ceil(options.windowMs / 1000);
