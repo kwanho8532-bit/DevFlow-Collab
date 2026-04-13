@@ -49,11 +49,6 @@ export const currProject = catchAsync(async function (req, res, next) {
 })
 
 export const csrfToken = catchAsync(async function (req, res, next) {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({
-            message: '로그인이 필요합니다.'
-        })
-    }
     const csrfToken = generateCsrfToken(req, res)
     res.status(200).json(csrfToken)
 })
