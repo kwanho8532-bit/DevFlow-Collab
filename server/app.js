@@ -98,8 +98,21 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
-// app.use(hpp())
-// app.use(mongoSanitize()) // 반드시 app.use(express.json()) 뒤에 작성해야함
+app.use(hpp())
+app.use((req, res, next) => {
+    // body만 sanitize
+    if (req.body) {
+        mongoSanitize.sanitize(req.body);
+    }
+
+    // params도 필요하면
+    if (req.params) {
+        mongoSanitize.sanitize(req.params);
+    }
+
+    // ❌ req.query는 절대 건드리지 않는다
+    next();
+}); // 반드시 app.use(express.json()) 뒤에 작성해야함
 
 app.set('trust proxy', 1)
 
