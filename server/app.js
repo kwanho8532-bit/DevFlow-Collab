@@ -159,6 +159,12 @@ app.use(passport.session())
 
 configurePassport(passport)
 
+app.use((req, res, next) => {
+    console.log("Direct Property:", Object.getOwnPropertyDescriptor(req, 'query'));
+    console.log(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(req), 'query'));
+    next()
+})
+
 app.use('/api', signRouter)
 
 app.use('/api/me', globalRouter)
@@ -204,10 +210,7 @@ app.use((err, req, res, next) => {
     // console.log(err, '147')
     // console.log(err.message, 'message')
     console.log(err.stack, 'stack')
-    console.log(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(req), 'query'));
     // 프로토타입이 아닌 req 객체 자체를 검사
-    console.log("Direct Property:", Object.getOwnPropertyDescriptor(req, 'query'));
-
     // console.log(err.status, 'status')
 
     const status = err.status || 500
