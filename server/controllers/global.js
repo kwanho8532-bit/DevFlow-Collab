@@ -49,6 +49,9 @@ export const currProject = catchAsync(async function (req, res, next) {
 })
 
 export const csrfToken = catchAsync(async function (req, res, next) {
+    // 세션을 강제로 저장
+    req.session.initialized = true
+
     const csrfToken = generateCsrfToken(req, res)
     res.status(200).json(csrfToken)
 })
