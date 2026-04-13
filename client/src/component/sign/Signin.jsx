@@ -106,7 +106,6 @@ export default function Signin() {
 
     const handleRegistration = async (value) => {
         try {
-            console.log(value)
             const user = await login(value)
             changeAuth(user)
             navigate('/hub', {

@@ -36,7 +36,6 @@ export const useAuthStore = create(
         changeAuth: (newAuth) => set({ auth: newAuth }),
         login: async (value) => {
             try {
-                console.log(value)
                 const { data } = await api.post('/signin', value)
                 set({ csrfToken: data.csrfToken })
                 return data.user

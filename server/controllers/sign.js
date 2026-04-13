@@ -51,6 +51,7 @@ export const signin = catchAsync(async function (req, res, next) {
     // console.log('1. 결정된 IP (req.ip):', req.ip);
     // console.log('2. 프록시 헤더 (x-forwarded-for):', req.headers['x-forwarded-for']);
     // console.log('3. 유저 에이전트:', req.headers['user-agent']);
+    console.log(req.body, 'login')
     passport.authenticate('local', (err, user, info) => {
         if (err) return next(err)
 
@@ -63,6 +64,8 @@ export const signin = catchAsync(async function (req, res, next) {
 
             // 인증 성공 시 토큰 생성 (쿠키는 자동 발급)
             const csrfToken = generateCsrfToken(req, res)
+
+            console.log(csrfToken, 'login in!!!')
 
             return res.status(200).json({
                 user,
