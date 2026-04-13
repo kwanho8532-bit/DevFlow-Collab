@@ -9,7 +9,6 @@ import Diversity2Icon from '@mui/icons-material/Diversity2';
 import { useForm } from "react-hook-form";
 import { signinSchema } from "../../schema/zod.js";
 import { zodResolver } from "@hookform/resolvers/zod";
-import api from "../api/axios.js";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { useAuthStore } from "../../store/useAuthStore.js";
 import { useEffect } from "react";
@@ -107,6 +106,7 @@ export default function Signin() {
 
     const handleRegistration = async (value) => {
         try {
+            console.log(value)
             const user = await login(value)
             changeAuth(user)
             navigate('/hub', {
