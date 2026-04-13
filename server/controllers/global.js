@@ -50,5 +50,6 @@ export const currProject = catchAsync(async function (req, res, next) {
 
 export const csrfToken = catchAsync(async function (req, res, next) {
     const csrfToken = generateCsrfToken(req, res)
+    console.log(csrfToken)
     res.status(200).json(csrfToken)
 })
