@@ -94,8 +94,9 @@ app.use(helmet({
 }))
 
 app.use(express.json())
-app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use(hpp())
 app.use(mongoSanitize()) // 반드시 app.use(express.json()) 뒤에 작성해야함
@@ -175,6 +176,11 @@ app.use('/api/chat', chatRouter)
 // 3. Sentry 에러 핸들러 (Error Handler)
 // 반드시 모든 라우터보다 '뒤에' 위치해야 합니다.
 Sentry.setupExpressErrorHandler(app);
+
+app.use((req, res, next) => {
+    console.log('🔥', req.method, req.url);
+    next();
+});
 
 app.use((err, req, res, next) => {
     // 1. CSRF 에러인지 가장 먼저 확인
