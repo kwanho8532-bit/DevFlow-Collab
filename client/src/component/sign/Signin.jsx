@@ -107,8 +107,8 @@ export default function Signin() {
 
     const handleRegistration = async (value) => {
         try {
-            await login(value)
-            changeAuth(data.user)
+            const user = await login(value)
+            changeAuth(user)
             navigate('/hub', {
                 replace: true,
                 state: { reason: 'SIGN_IN' }
