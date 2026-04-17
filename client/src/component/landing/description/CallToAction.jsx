@@ -2,7 +2,11 @@ import {
     Box, Container, Typography,
     Button, Paper, Stack,
     Chip,
-    Dialog
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions
 } from '@mui/material';
 
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
