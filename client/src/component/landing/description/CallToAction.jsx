@@ -1,13 +1,27 @@
 import {
     Box, Container, Typography,
     Button, Paper, Stack,
-    Chip
+    Chip,
+    Dialog
 } from '@mui/material';
 
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { Link } from 'react-router';
+import { useState } from 'react';
 
 export default function CallToAction() {
+    const [open, setOpen] = useState(false)
+
+    const handleOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
+
+
     return (
         <Container maxWidth="md" sx={{ pb: 15 }}>
             <Paper
@@ -69,6 +83,7 @@ export default function CallToAction() {
                         </Button>
 
                         <Button
+                            onClick={handleOpen}
                             variant="outlined"
                             size="large"
                             startIcon={<ChatBubbleOutlineIcon />}
@@ -96,6 +111,28 @@ export default function CallToAction() {
                             더 나은 협업 환경, 여러분의 목소리로 완성됩니다.
                         </Typography>
                     </Box>
+
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                        role="alertdialog"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                            의견을 남겨주세요.
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                devflow037@gmail.com
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} autoFocus>
+                                close
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                 </Stack>
             </Paper>
         </Container>
